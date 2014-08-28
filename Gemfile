@@ -11,6 +11,8 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
+gem "figaro"
+
 group :production do 
 	gem 'pg'
 	gem 'rails_12factor'
