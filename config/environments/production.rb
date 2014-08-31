@@ -11,7 +11,6 @@ Rails.application.configure do
   config.eager_load = true
 
 
-  Paperclip.options[:command_path] = 'C:\Program Files\ImageMagick-6.8.9-Q16'
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
