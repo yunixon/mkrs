@@ -12,6 +12,14 @@
     </div>
   <% end %>
 
+  <% if @listing.image.present? %>
+        <td><%= image_tag @listing.image.url(:thumb) %></td>
+        <td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <%else%>
+  <div>Nera</div>
+  <% end %>
+
+
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -27,6 +35,9 @@
   <div class="field">
     <%= f.label :image %><br>
     <%= f.file_field :image %>
+  </div>
+  <div>
+    <%= f.check_box :remove_image %>
   </div>
   <div class="actions">
     <%= f.submit %>
