@@ -1,5 +1,5 @@
 class AddUserIdToListings < ActiveRecord::Migration
   def change
-    add_column :listings, :user_id, :interger
+    add_column :listings, :user_id, :integer
   end
 end
