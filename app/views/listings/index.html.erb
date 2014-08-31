@@ -17,6 +17,7 @@
       <tr>
         <td><%= image_tag listing.image.url(:thumb) %></td>
         <td><%= listing.name %></td>
+        <td><%= listing.user.name %></td>
         <td><%= listing.description %></td>
         <td><%= listing.price %></td>
         <td><%= link_to 'Show', listing %></td>
