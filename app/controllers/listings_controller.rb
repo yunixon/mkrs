@@ -1,10 +1,10 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!, only: [:seller, :new,:create ,:edit, :update, :destroy]
+  before_filter :authenticate_user!, only: [ :new,:create ,:edit, :update, :destroy]
   before_filter :check_user, only: [:edit, :update, :destroy]
 
   def seller 
-    @listings = Listing.where(user: current_user).order("created_at DESC")
+    @listings = Listing.where(user: params[:id]).order("created_at DESC")
   end
 
 
@@ -88,7 +88,7 @@ class ListingsController < ApplicationController
     end
 
     def check_user
-      if current_user != @listing_user
+      if current_user != @listing.user
         redirect_to root_url, aler: "Sorry, this listing belongs to someone else"
       end
     end

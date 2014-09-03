@@ -1,6 +1,9 @@
 <div class="container">
 <h1>Listing listings</h1>
 
+    <% @listings.each do |listing| %>
+<%= listing.user.name %>
+<%= listing.user.email %>
 <table>
   <thead>
     <tr>
@@ -13,7 +16,7 @@
   </thead>
 
   <tbody>
-    <% @listings.each do |listing| %>
+
       <tr>
         <td><%= link_to image_tag(listing.image.url(:thumb)), listing %></td>
         <td><%= listing.name %></td>
