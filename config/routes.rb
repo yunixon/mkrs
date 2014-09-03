@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'profiles/show'
+
+  get 'profiles/edit'
+
   devise_for :users
   resources :listings
 
@@ -9,6 +13,8 @@ Rails.application.routes.draw do
   get 'seller/:id/listings' => "listings#seller"
 
   root 'listings#index'
+
+  get '/:id', to: 'profiles#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

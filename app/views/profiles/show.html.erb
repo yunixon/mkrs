@@ -1,0 +1,32 @@
+<h1>Profiles#show</h1>
+<p>Find me in app/views/profiles/show.html.erb</p>
+
+<%= @user.name %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+ <% if @listings %>
+ <% @listings.each do |listing| %>
+      <tr>
+        <td><%= link_to image_tag(listing.image.url(:thumb)), listing %></td>
+        <td><%= listing.name %></td>
+        <td><%= listing.user.name %></td>
+        <td><%= listing.description %></td>
+        <td><%= listing.price %></td>
+        <td><%= link_to 'Show', listing %></td>
+      </tr>
+  <% end %>
+  <% end %>
+
+    </tbody>
+</table>
