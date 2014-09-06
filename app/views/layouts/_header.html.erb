@@ -1,17 +1,41 @@
-<!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav">
-      <li><%= link_to "About", pages_about_path %></li>
-      <li><%= link_to "Contact", pages_contact_path %></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <% if user_signed_in? %>
-        <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-        <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-      <% else %>
-        <li><%= link_to "Sign Up", new_user_registration_path %></li>
-        <li><%= link_to "Sign In", new_user_session_path %></li>
-      <% end %>
-    </ul>
-  </div><!-- /.navbar-collapse -->
-</nav>
+<div id="header" class="header">
+  <div class="container-header">
+    <a class="header-logo"></a>
+      <ul class="nav">
+        <li class="btn"><a>Kategorijos</a></li>
+      </ul>
+      <ul class="nav right">
+        <li class="btn-upload"><%= link_to 'Įkelti rankdarbį', new_listing_path %></li>
+        <% if user_signed_in? %>
+        <li class="dropdown user-item">Alex</li>
+      </ul>
+      
+          <ul class="cf tooltip-top-right user-tooltip open">
+          <a href='/<%=current_user.name %>'  class="tooltip-user-name"><li><%= current_user.name %>
+          <span class="tooltip-user-view-profile">Peržiūrėti profilį</span>
+          <li></a>
+          <li><%= link_to "Redaguoti paskyrą", edit_user_registration_path %></li>
+          <li class="sign_out"><%= link_to('Atsijungti', destroy_user_session_path, :method => :delete) %></li>
+              <% else %>
+        <!--<li><%= link_to "Registruotis", new_user_registration_path %></li> -->
+          <li><%= link_to "Prisijungti", new_user_session_path %></li>
+          <% end %>
+          </ul>
+      
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+

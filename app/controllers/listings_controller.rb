@@ -63,7 +63,7 @@ class ListingsController < ApplicationController
   def destroy
     @listing.destroy
     
-    @listing.remove_image!
+    @listing.remove_image_1!
 
     respond_to do |format|
       format.html { redirect_to listings_url, notice: 'Listing was successfully destroyed.' }
@@ -84,7 +84,7 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:name, :description, :price, :image)
+      params.require(:listing).permit(:name, :description, :price, :image_1, :image_2)
     end
 
     def check_user

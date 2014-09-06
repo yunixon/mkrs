@@ -12,8 +12,8 @@
     </div>
   <% end %>
 
-  <% if @listing.image.present? %>
-        <td><%= image_tag @listing.image.url(:thumb) %></td>
+  <% if @listing.image_1.present? %>
+        <td><%= image_tag @listing.image_1.url %></td>
   <%else%>
   <div>Nera</div>
   <% end %>
@@ -32,8 +32,8 @@
     <%= f.text_field :price %>
   </div>
   <div class="field">
-    <%= f.label :image %><br>
-    <%= f.file_field :image %>
+    <%= f.label :image_1 %><br>
+    <%= f.file_field :image_1 %>
   </div>
 
   <div class="actions">

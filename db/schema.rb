@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902170219) do
+ActiveRecord::Schema.define(version: 20140906112344) do
+
+  create_table "identities", force: true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id"
 
   create_table "listings", force: true do |t|
     t.string   "name"
@@ -23,9 +33,9 @@ ActiveRecord::Schema.define(version: 20140902170219) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.string   "image"
-    t.integer  "user_id"
     t.string   "image_1"
+    t.integer  "user_id"
+    t.string   "image_2"
   end
 
   create_table "users", force: true do |t|

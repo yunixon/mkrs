@@ -26,6 +26,11 @@ gem "figaro"
 gem "mini_magick"
 gem 'nested_form'
 
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
+
 gem 'devise'
 
 # Use jquery as the JavaScript library
