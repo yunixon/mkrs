@@ -7,7 +7,7 @@
       <ul class="nav right">
         <li class="btn-upload"><%= link_to 'Įkelti rankdarbį', new_listing_path %></li>
         <% if user_signed_in? %>
-        <li class="dropdown user-item">Alex</li>
+        <li class="dropdown user-item"><%= current_user.profile_image %></li>
       </ul>
       
           <ul class="cf tooltip-top-right user-tooltip open">
