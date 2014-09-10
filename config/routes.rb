@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   get '/:id', to: 'profiles#show'
 
-  devise_for :users, :controllers => { :registration => "registration", omniauth_callbacks: 'omniauth_callbacks'}
+  devise_for :users, :controllers => { :registration => "registration", omniauth_callbacks: 'omniauth_callbacks'}, path: 'vartotojas', path_names: { edit: 'redaguoti', sing_up: 'registaricja'}
 
   get 'pages/homepage'
 
