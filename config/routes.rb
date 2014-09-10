@@ -6,18 +6,24 @@ Rails.application.routes.draw do
   resources :listings
 
   get 'pages/about'
-
+  get 'pages/homepage'
   get 'pages/contact'
 
   get 'seller/:id/listings' => "listings#seller"
+
+  get 'users/:id/finish_registration' => "user#finish"
 
   root 'listings#index'
 
   get '/:id', to: 'profiles#show'
 
-  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, :controllers => { :registration => "registration", omniauth_callbacks: 'omniauth_callbacks'}, path: 'vartotojas', path_names: { edit: 'redaguoti', sing_up: 'registaricja'}
 
-  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
+  get 'pages/homepage'
+
+
+  #301 REDIRECT
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

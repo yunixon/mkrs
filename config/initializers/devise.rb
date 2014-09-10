@@ -23,7 +23,8 @@ Devise.setup do |config|
 
 
 
-  config.omniauth :facebook, "643933272388893", "f381e213e06b253bd3f4ceca083344d2"
+  config.omniauth :facebook, "1510411019197109", "1bf2e04fd3280f38c302e618e28d503b",
+  :secure_image_url => true, :image_size => 'large'
   
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is

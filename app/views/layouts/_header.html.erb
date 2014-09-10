@@ -7,10 +7,13 @@
       <ul class="nav right">
         <li class="btn-upload"><%= link_to 'Įkelti rankdarbį', new_listing_path %></li>
         <% if user_signed_in? %>
-        <li class="dropdown user-item"><%= current_user.profile_image %></li>
+        <li class="dropdown profile">
+          <div class="profile-pic">
+           <%= @avatar %>
+          </div>
+        </li>
       </ul>
-      
-          <ul class="cf tooltip-top-right user-tooltip open">
+      <ul class="cf tooltip-top-right user-tooltip open">
           <a href='/<%=current_user.name %>'  class="tooltip-user-name"><li><%= current_user.name %>
           <span class="tooltip-user-view-profile">Peržiūrėti profilį</span>
           <li></a>
@@ -18,9 +21,11 @@
           <li class="sign_out"><%= link_to('Atsijungti', destroy_user_session_path, :method => :delete) %></li>
               <% else %>
         <!--<li><%= link_to "Registruotis", new_user_registration_path %></li> -->
-          <li><%= link_to "Prisijungti", new_user_session_path %></li>
+          <li class="login"><%= link_to "Prisijungti", new_user_session_path %></li>
           <% end %>
-          </ul>
+      </ul>
+      
+      
       
   </div>
 </div>

@@ -1,4 +1,6 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+
+
   def self.provides_callback_for(provider)
     class_eval %Q{
       def #{provider}
@@ -26,4 +28,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       finish_signup_path(resource)
     end
   end
+
+  def after_sign_up_path_for(resource)
+    "http://somewhere.com"
+  end
+
+
 end

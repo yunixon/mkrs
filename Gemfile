@@ -20,11 +20,14 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'thin'
+
 gem 'carrierwave'
 gem 'carrierwave-dropbox'
 gem "figaro"
 gem "mini_magick"
 gem 'nested_form'
+gem 'open_uri_redirections'
 
 gem 'omniauth'
 gem 'omniauth-twitter'

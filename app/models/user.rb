@@ -3,9 +3,16 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
   validates :name, presence: true
-  validates_uniqueness_of :name
+  validates_uniqueness_of :user_name
+
+
 
   has_many :listings, dependent: :destroy
+
+  # Avatar uploader
+  mount_uploader :profile_image, AvatarUploader
+
+
 
 
   TEMP_EMAIL_PREFIX = 'change@me'
@@ -14,7 +21,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable
   devise :database_authenticatable, :registerable, 
-    :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
@@ -46,10 +53,10 @@ class User < ActiveRecord::Base
           #username: auth.info.nickname || auth.uid,
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20],
-          profile_image: auth.info.image,
-          gender: auth.extra.raw_info.gender
+          remote_profile_image_url: auth[:info][:image],
+          gender: auth.extra.raw_info.gender,
+          provider: auth.provider
         )
-        user.skip_confirmation!
         user.save!
       end
     end
