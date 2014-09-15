@@ -167,6 +167,7 @@ h5 {
 }
 
 .user-tooltip {
+	display: none;
 	width: 200px;
 	background: #fff;
 	position: absolute;
