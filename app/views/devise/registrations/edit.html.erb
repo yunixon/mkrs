@@ -1,36 +1,72 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="user-cover" style="background-image:url(http://pacdn.500px.org/316404/14ed503e7038112c7509a4533897480ee936279a/cover_2048.jpg?2); "></div>
+<div class="container">
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put,      :multipart => true }) do |f| %>
   <%= devise_error_messages! %>
 
-  <%= current_user.provider %> 
-  <div>Feisbukas</div>
+<div class="edit-profile-pic">
+<%= f.file_field :profile_image %>
+<%= image_tag(current_user.profile_image) %>
+</div>
 
+  <div class="edit-profile-wrapper">
+  <div class="input half first">
+  <span>Vardas</span>
+  <%= f.text_field :first_name %>
+  </div>
 
+  <div class="input half">
+  <span>Pavardė</span>
+  <%= f.text_field :last_name%>
+  </div>
 
+  <div class="input">
+  <span>Profilio vardas / Įmonės pavadinimas</span>
+  <%= f.text_field :name%>
+  <p>Jūsų paskyra bus pasiekiama adresu: <i>makers.lt/ProfilioVardas</i></p>
+  </div>
 
+  <div class="input">
+  <span>El. paštas</span>
+  <%= f.email_field :email %>
+  </div>
 
+  <div class="input bio">
+  <span>Apie mane</span>
+  <%= f.text_area :bio, placeholder: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem is that it has a more-or-less normal distribution of letters, as opposed to using, making it look like readable English.' %>
+  </div>
 
-  <%= f.email_field :email, autofocus: true %></div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+  <div hidden>
+  <div class="input">
+  <span>El. paštas</span>
+  <%= f.password_field :password, autocomplete: "off" %>
+  </div>
 
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+  <div class="input">
+  <span>El. paštas</span>
+  <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %></div>
+  <div class="input">
+  <span>El. paštas</span>
+  <%= f.password_field :current_password, autocomplete: "off" %>
+  </div>
+  </div>
 
-  <div><%= f.submit "Update" %></div>
+
+  <div><%= f.submit "Išsaugoti",:class => 'save-btn'  %></div>
 <% end %>
+</div>
 
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+
+</div>

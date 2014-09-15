@@ -3,27 +3,32 @@
     <a class="header-logo"></a>
       <ul class="nav">
         <li class="btn"><a>Kategorijos</a></li>
+        <li class="btn"><a>Naujausi</a></li>
+        <li class="btn"><a>Populiariausi</a></li>
       </ul>
       <ul class="nav right">
         <li class="btn-upload"><%= link_to 'Įkelti rankdarbį', new_listing_path %></li>
         <% if user_signed_in? %>
         <li class="dropdown profile">
-          <div class="profile-pic">
-           <%= @avatar %>
-          </div>
-        </li>
+        <div class="profile-pic">
+           <a href="#"><%= image_tag(current_user.profile_image) %>
+           <p><%= current_user.name %></p></a>
+        </div>
+
       </ul>
-      <ul class="cf tooltip-top-right user-tooltip open">
-          <a href='/<%=current_user.name %>'  class="tooltip-user-name"><li><%= current_user.name %>
-          <span class="tooltip-user-view-profile">Peržiūrėti profilį</span>
-          <li></a>
-          <li><%= link_to "Redaguoti paskyrą", edit_user_registration_path %></li>
-          <li class="sign_out"><%= link_to('Atsijungti', destroy_user_session_path, :method => :delete) %></li>
-              <% else %>
-        <!--<li><%= link_to "Registruotis", new_user_registration_path %></li> -->
-          <li class="login"><%= link_to "Prisijungti", new_user_session_path %></li>
-          <% end %>
-      </ul>
+      <div class="cf tooltip-top-right user-tooltip open">
+        <ul>
+            <a href='/<%=current_user.name %>'  class="tooltip-user-name"><li><%= current_user.name %>
+            <span class="tooltip-user-view-profile">Peržiūrėti profilį</span>
+            <li></a>
+            <li><%= link_to "Redaguoti paskyrą", edit_user_registration_path %></li>
+            <li class="sign_out"><%= link_to('Atsijungti', destroy_user_session_path, :method => :delete) %></li>
+                <% else %>
+          <!--<li><%= link_to "Registruotis", new_user_registration_path %></li> -->
+            <li class="login"><%= link_to "Prisijungti", new_user_session_path %></li>
+            <% end %>
+        </ul>
+      </div>
       
       
       

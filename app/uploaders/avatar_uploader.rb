@@ -17,24 +17,28 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  # def default_url
+   def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
   #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
   #
-  #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-  # end
+     "https://dl-web.dropbox.com/get/Apps/Makers-lt/app_images/bp_default_avatar.jpg?_subject_uid=331871441&w=AAARm-tkmY2tYM8e8X4WLEf0kUaPChThuwDWhA8WmYQQHw"
+   end
 
   # Process files as they are uploaded:
-    process :resize_to_fill => [150, 150]
+    process :resize_to_fill => [169, 169]
   #
   # def scale(width, height)
   #   # do something
   # end
 
   # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process :resize_to_fit => [50, 50]
-  # end
+    version :small do
+       process :resize_to_fill => [36, 36]
+    end
+
+    version :medium do
+       process :resize_to_fill => [45, 45]
+    end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

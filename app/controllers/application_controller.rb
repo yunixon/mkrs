@@ -4,19 +4,25 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
-  before_action :configure_permitted_parameters, if: :devise_controller?
-  @avatar = '<p>current_user.profile_image</p>'
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :name
-    devise_parameter_sanitizer.for(:account_update) << :name
-
-  end
 
 
 #def after_sign_in_path_for(resource)
 #  '/users/edit'
 #end
   
+before_filter :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :name
+
+    devise_parameter_sanitizer.for(:account_update) do |u|
+    u.permit(:first_name, :last_name, :name, :email, :password, :password_confirmation, :bio, :profile_image)
+    end
+  end
+
+
+
+
 end
