@@ -1,51 +1,50 @@
-<div id="header" class="header">
-  <div class="container-header">
-    <a class="header-logo"></a>
-      <ul class="nav">
-        <li class="btn"><a>Kategorijos</a></li>
-        <li class="btn"><a>Naujausi</a></li>
-        <li class="btn"><a>Populiariausi</a></li>
-      </ul>
-      <ul class="nav right">
-        <li class="btn-upload"><%= link_to 'Įkelti rankdarbį', new_listing_path %></li>
-        <% if user_signed_in? %>
-        <li class="dropdown profile">
-        <div class="profile-pic">
-           <a href=""><%= image_tag(current_user.profile_image) %>
-           <p><%= current_user.name %></p></a>
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="custom-form search" placeholder="Ieškoti rankdarbių">
         </div>
-
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Rankdarbiai
+        <span class="caret"></span></a>
+          <ul class="dropdown-menu categories" role="menu">
+            <li><a href="#"><i class="icon-monocle-mustache-streamline"></i>Testas</a></li>
+            <li><a href="#">Mano kolekcija</a></li>
+            <li><a href="#">Profilio nustatymai</a></li>
+            <li class="divider"></li>
+            <li><a href="#" class="logout">Atsijungti</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Autoriai</a></li>
+        <li><a href="#" class="upload">Įkelti rankdarbį</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle settings" data-toggle="dropdown">
+            <img src="https://dl-web.dropbox.com/get/Apps/Makers-lt/app_images/default_avatar.png?_subject_uid=331871441&w=AAAitvK6uH5opI9ysun59sNx81eaAkVds4xupBhQWTMBxg"> 
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Mano profilis</a></li>
+            <li><a href="#">Mano kolekcija</a></li>
+            <li><a href="#">Profilio nustatymai</a></li>
+            <li class="divider"></li>
+            <li><a href="#" class="logout">Atsijungti</a></li>
+          </ul>
+        </li>
       </ul>
-      <div class="cf tooltip-top-right user-tooltip open">
-        <ul>
-            <a href='/<%=current_user.name %>'  class="tooltip-user-name"><li><%= current_user.name %>
-            <span class="tooltip-user-view-profile">Peržiūrėti profilį</span>
-            <li></a>
-            <li><%= link_to "Redaguoti paskyrą", edit_user_registration_path %></li>
-            <li class="sign_out"><%= link_to('Atsijungti', destroy_user_session_path, :method => :delete) %></li>
-                <% else %>
-          <!--<li><%= link_to "Registruotis", new_user_registration_path %></li> -->
-            <li class="login"><%= link_to "Prisijungti", new_user_session_path %></li>
-            <% end %>
-        </ul>
-      </div>
-      
-      
-      
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

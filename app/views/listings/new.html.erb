@@ -1,5 +1,7 @@
-<h1>New listing</h1>
+<h1>Editing listing</h1>
 
 <%= render 'form' %>
+<%= link_to 'Destroy', @listing, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link"%>
 
+<%= link_to 'Show', @listing %> |
 <%= link_to 'Back', listings_path %>

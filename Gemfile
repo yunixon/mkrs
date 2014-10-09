@@ -22,8 +22,8 @@ end
 
 gem 'thin'
 
-gem 'carrierwave'
-gem 'carrierwave-dropbox'
+
+
 gem "figaro"
 gem "mini_magick"
 gem 'nested_form'
@@ -35,6 +35,14 @@ gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 
 gem 'devise'
+gem 'jquery-turbolinks'
+
+
+gem 'jquery-fileupload-rails'
+
+#Boostrap
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+
 
 
 # Use jquery as the JavaScript library
@@ -45,6 +53,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
+
+gem 'carrierwave'
+gem 'carrierwave-dropbox'
 
 group :doc do
   gem 'sdoc', require: false

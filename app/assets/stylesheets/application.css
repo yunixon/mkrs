@@ -11,7 +11,10 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require bootstrap_and_overrides
  *= require_self
+
+
  */
 /**
  * For modern browsers
@@ -22,428 +25,48 @@
  * 2. The use of `table` rather than `block` is only necessary if using
  *    `:before` to contain the top-margins of child elements.
  */
-.cf:before,
-.cf:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
-}
 
-.cf:after {
-    clear: both;
-}
 
-/**
- * For IE 6/7 only
- * Include this rule to trigger hasLayout and contain floats.
- */
-.cf {
-    *zoom: 1;
-}
+/* Navigation */
 
-body {
-	background: #f5f5f5;
-}
-a, p, li, span {
-	font-size: 14px;
-	color: #6d747b;
-	text-decoration: none;
-	font-family: 'Source Sans Pro', sans-serif;
-}
 
-label,
-input {
-	font-family: 'Source Sans Pro', sans-serif;
-}
+/* ======= ICONOS ========== */
 
-li {
-	list-style-type: none;
-}
-
-div, ul, li, input, textarea {
-	box-sizing:border-box;
-  	-moz-box-sizing:border-box;
-  	-webkit-box-sizing:border-box;
-}
-
-h1, h2, h3, h4, h5 {
-	font-family: 'Source Sans Pro', sans-serif;
-	font-weight: 600;
-	color: #56595b;
-}
-
-h1 {
-	font-size: 36px;
-}
-
-h2 {
-	font-size: 30px;
-}
-
-h3 {
-	font-size: 24px;
-}
-
-h4 {
+.dropdown-menu.categories li a i {
 	font-size: 18px;
+	margin-right: 11px;
+	vertical-align: middle;
 }
 
-h4 {
-	font-size: 14px;
-	font-weight: 700;
+.dropdown-menu.categories li a i.icon-monocle-mustache-streamline {
+	color: #95bf15;
 }
 
-h5 {
-	font-size: 12px;
-	font-weight: 700;
+.dropdown-menu.categories li a i.icon-bag-shopping-streamline {
+	color: #2996cc;
 }
 
-.right {
-	float: right;
-}
-
-.left {
-	float: left;
-}
-
-.container {
-	width: 1140px;
-	padding: 0 15px;
-	margin: 0 auto;
-}
-
-.container-header {
-	padding: 0 20px;
-	margin: 0 auto;
-}
-.header {
-	height: 50px;
-	background-color: #fff; 
-}
-
-.nav {
-	padding: 0;
-	margin: 0;
-	display: inline-block;
-}
-
-.nav li {
-	float: left;
-	margin-left: 40px;
-	list-style-type: none;
-	font-size: 14px;
-}
-
-.nav li a {
-	line-height: 50px;
-}
-
-.header-logo {
-	height: 50px;
-	width: 74px;
-	display: inline-block;
-	background: url('https://dl-web.dropbox.com/get/Apps/Makers-lt/app_images/makers.png?_subject_uid=331871441&w=AABaR6SaW91Z8ONZa0C3KwkMhbCC9KlUbUTCpszEN54Sbw') 0 0 no-repeat;
-	margin-right: 15px;
-}
-
-.btn-upload a {
-	padding: 9px 16px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px; /* border radius */
-	-moz-background-clip: padding;
-	-webkit-background-clip: padding-box;
-	background-clip: padding-box; /* prevents bg color from leaking outside the border */
-	background-color: #df3f3f; /* layer fill content */
-	-moz-box-shadow: inset 0 -2px 0 rgba(0,0,0,.11); /* inner shadow */
-	-webkit-box-shadow: inset 0 -2px 0 rgba(0,0,0,.11); /* inner shadow */
-	box-shadow: inset 0 -2px 0 rgba(0,0,0,.11); /* inner shadow */
+.dropdown-menu.categories li a i.icon-shoes-snickers-streamline {
 	color: #fff;
-	text-transform: uppercase;
 }
 
-.btn-upload a:hover {
-	background: #c53030;
-	text-decoration: none;
+.dropdown-menu.categories li a i.icon-armchair-chair-streamline {
+	color: #636466;
 }
 
-.user-tooltip {
-	display: none;
-	width: 200px;
-	background: #fff;
-	position: absolute;
-	right: 20px;
-	border-radius: 3px;
-	border-bottom: 1px solid #ddd;
-	top: 50px;
-	border-top: 1px solid #ddd;
+.dropdown-menu.categories li a i.icon-happy-smiley-streamline {
+	color: #8033cc;
 }
 
-.user-tooltip ul {
-	margin: 0;
-	padding: 0;
+.dropdown-menu.categories li a i.icon-like-love-streamline {
+	color: #1cbda2;
 }
 
-.user-tooltip li a {
-	display: block;
+.dropdown-menu.categories li a i.icon-brush-paint-streamline {
+	color: #5472cc;
 }
 
-.tooltip-top-right:before {
-	content: "";
-	position: absolute;
-	width: 0;
-	height: 0;
-	border-width: 6px;
-	border-style: solid;
-	border-color: transparent transparent #ddd transparent;
-	top: -13px;
-	right: 10px;
+.dropdown-menu.categories li a i.icon-photo-pictures-streamline {
+	color: #ec2625;
 }
 
-.user-tooltip li {
-	line-height: 42px;
-	padding: 0 15px;
-}
-
-.user-tooltip li:hover {
-	background: #f9fafa;
-}
-
-li.sign_out {
-	background: #fff;
-	border-top: 1px solid #e2e5e8;
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
-}
-
-.tooltip-user-view-profile {
-	display: block;
-	font-weight: 700;
-	font-size: 10px;
-	color: #b2bac2;
-	line-height: 12px;
-	position: relative;
-	top: -10px;
-}
-
-.tooltip-user-name {
-	font-weight: 700;
-}
-
-.tooltip-user-name li {
-	border-bottom: 1px solid #e2e5e8;
-	border-top-left-radius: 3px;
-	border-top-right-radius: 3px;
-}
-
-.tooltip-user-name li:hover {
-	color: #787c7f;
-}
-
-ul.open {
-	opacity: 1;
-}
-
-.profile-pic {
-	height: 50px;
-	display: inline-block;
-}
-
-.profile-pic a {
-	line-height: 0px;
-	display: block;
-	height: 50px;
-}
-
-.profile-pic a p {
-	display: inline-block;
-	padding: 0px;
-	margin: 0px;
-	position: relative;
-	top: -10px;
-}
-
-.profile-pic a p:after {
-	content: " ";
-	display: block;
-	width: 0;
-	height: 0;
-	border-style: solid;
-	border-width: 5px 4px 0 4px;
-	border-color: #6d747b transparent transparent transparent;
-	display: inline-block;
-	margin-left: 5px;
-	position: relative;
-	top: -2px;
-}
-
-.profile-pic img {
-	width: 36px;
-	height: 36px;
-	border-radius: 25px;
-	border: 2px solid white;
-	position: relative;
-	top: 5px;
-}
-
-li.profile {
-	margin-left: 15px;
-}
-
-li.login {
-	margin-left: 15px;
-}
-
-
-/* ====== Homepage ======= */
-
-.hero {
-	width: 100%;
-	overflow: hidden;
-	height: 435px;
-	background: tomato;
-}
-
-.hero-title {
-	position: relative;
-	top: 30%;
-	text-align: center;
-}
-
-.hero-title h1{
-	font-size: 45px;
-	font-weight: 100;
-	color: #fff;
-	text-transform: uppercase;
-	margin-bottom: 0;
-}
-
-.hero-title h4 {
-	color: #fff;
-	margin-top: 10px;
-}
-
-
-/* ==== EDIT PROFILE ==== */
-
-
-/* INPUTS and LABELS */
-
-.input span {
-	font-size: 14px;
-	color: #6d747b;
-	text-transform: uppercase;
-	font-weight: 700;
-	margin-bottom: 10px;
-	display: block;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-textarea {
-	height: 48px;
-	width: 100%;
-	border-radius: 3px;
-	border: 1px solid #dce4e6;
-	padding-left: 20px;
-	font-size: 14px;
-	color: #aab0b6;
-	max-width: 600px;
-	max-height: 300px;
-}
-
-textarea {
-	height: 200px;
-	padding: 20px;
-	line-height: 24px;
-}
-
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus,
-textarea:focus {
-	color: #6d747b;
-	outline: none;
-	box-shadow: 0px 0px 0px 1px #76a7e1 inset;
-}
-
-.input {
-	margin-bottom: 20px;
-}
-
-.input.half {
-	width: 48.5%;
-	display: inline-block;
-}
-
-.input.half.first {
-	margin-right: 2.2%;
-}
-
-.input p {
-	font-size: 12px;
-	color: #6d747b;
-	margin-top: 3px;
-}
-
-.input p i {
-	font-weight: 600;
-	color: #5d646b;
-}
-
-/* === === */
-
-.user-cover {
-	height: 180px;
-	width: 100%;
-}
-
-.edit-profile-pic {
-	height: 175px;
-	width: 175px;
-	border-radius: 3px;
-	border:3px solid #fff;
-	overflow: hidden;
-	margin-top: -90px;
-	display: inline-block;
-	vertical-align: top;
-}
-
-.edit_user {
-
-}
-
-.edit-profile-pic input {
-	position: absolute;
-}
-
-.edit-profile-wrapper {
-	width: 600px;
-	display: inline-block;
-	margin-left: 70px;
-	margin-top:65px;
-}
-
-.save-btn {
-	background: #76a7e1;
-	color: #fff;
-	border: none;
-	width: 134px;
-	height: 40px;
-	border-radius: 3px;
-	-moz-box-shadow: inset 0 -2px 0 rgba(0,0,0,.11); /* inner shadow */
-	-webkit-box-shadow: inset 0 -2px 0 rgba(0,0,0,.11); /* inner shadow */
-	box-shadow: inset 0 -2px 0 rgba(0,0,0,.11); /* inner shadow */
-}
-
-input.save-btn:focus {
-	outline: none;
-	box-shadow: 0px;
-	color: #fff;
-	background: #6490c3;
-}
-
-.save-btn:hover {
-	background: #6490c3;
-}

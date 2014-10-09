@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   get 'pages/homepage'
 
+  
+
 
   #301 REDIRECT
 

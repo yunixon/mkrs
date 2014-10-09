@@ -17,13 +17,13 @@ class User < ActiveRecord::Base
 
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
-
+  validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable
   devise :database_authenticatable, :registerable, 
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
-  validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
+
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
@@ -57,7 +57,8 @@ class User < ActiveRecord::Base
           password: Devise.friendly_token[0,20],
           remote_profile_image_url: auth[:info][:image],
           gender: auth.extra.raw_info.gender,
-          provider: auth.provider
+          provider: auth.provider,
+          facebook_url: auth.info.urls.Facebook
         )
         user.save!
       end

@@ -12,8 +12,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
+  
+
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+      "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -21,11 +23,11 @@ class AvatarUploader < CarrierWave::Uploader::Base
   #   # For Rails 3.1+ asset pipeline compatibility:
   #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
   #
-     "https://dl-web.dropbox.com/get/Apps/Makers-lt/app_images/bp_default_avatar.jpg?_subject_uid=331871441&w=AAARm-tkmY2tYM8e8X4WLEf0kUaPChThuwDWhA8WmYQQHw"
+     "https://dl-web.dropbox.com/get/Apps/Makers-lt/app_images/default_avatar.png?_subject_uid=331871441&w=AAAitvK6uH5opI9ysun59sNx81eaAkVds4xupBhQWTMBxg"
    end
 
   # Process files as they are uploaded:
-    process :resize_to_fill => [169, 169]
+    process :resize_to_fill => [70, 70]
   #
   # def scale(width, height)
   #   # do something

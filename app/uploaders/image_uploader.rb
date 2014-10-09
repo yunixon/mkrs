@@ -15,6 +15,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   storage :dropbox
   # storage :fog
 
+
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
@@ -31,17 +32,22 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  # Process files as they are uploaded:
-  process :resize_to_fit => [285, 270]
+  #Process files as they are uploaded:
+   process :resize_to_fill => [700, 700]
   #
   # def scale(width, height)
   #   # do something
   # end
 
   # Create different versions of your uploaded files:
-   version :thumb do
-     process :resize_to_fit => [50, 50]
-   end
+
+  version :small do
+    process :resize_to_fill => [265, 260]
+  end
+
+  # version :thumb do
+  #  process :resize_to_fit => [50, 50]
+  # end
   
   #version :card do
    #  process :resize_to_fit => [250, 280]

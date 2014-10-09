@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, only: [ :new,:create ,:edit, :update, :destroy]
-  before_filter :check_user, only: [:edit, :update, :destroy]
+ # before_filter :check_user, only: [:edit, :update, :destroy]
 
   def seller 
     @listings = Listing.where(user: params[:id]).order("created_at DESC")
@@ -32,7 +32,7 @@ class ListingsController < ApplicationController
   # POST /listings.json
   def create
     @listing = Listing.new(listing_params)
-    @listing.user_id = current_user.id
+
     respond_to do |format|
       if @listing.save
         format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
@@ -63,7 +63,7 @@ class ListingsController < ApplicationController
   def destroy
     @listing.destroy
     
-    @listing.remove_image_1!
+    @listing.remove_image!
 
     respond_to do |format|
       format.html { redirect_to listings_url, notice: 'Listing was successfully destroyed.' }
@@ -84,7 +84,7 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:name, :description, :price, :image_1, :image_2)
+      params.require(:listing).permit(:name, :description, :price, :image)
     end
 
     def check_user

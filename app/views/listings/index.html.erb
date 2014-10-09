@@ -1,32 +1,37 @@
 <div class="container">
 <h1>Listing listings</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
+<div class="item">
+<a href="#"></a>
+
+  <div class="item-info">
+    <p class="price">125.00 €</p>
+    <div class="item-info-bottom">
+      <p class="item-name">1970's Gooseneck Table Lamp, Metal and Wood</p>
+      <p class="item-author">Ieva Šimkutė</p>
+    </div>
+  </div>
+<img src="https://dl-web.dropbox.com/get/Apps/Makers-lt/uploads/listing/image/4/small_il_570xN.607592150_o7ai.jpg?_subject_uid=331871441&w=AACZW9Z8xNRFwIKp1c1tyhkCgKzEpAsGG7MfRkfDmnMalQ">
+</div>
+
+
+
+<table>
   <tbody>
     <% @listings.each do |listing| %>
       <tr>
-        <td><%= link_to image_tag(listing.image_1.url), listing %></td>
+        <td><%= link_to image_tag(listing.image.url), listing %></td>
         <td><%= listing.name %></td>
-        <td><%= listing.user.name %></td>
         <td><%= listing.description %></td>
         <td><%= listing.price %></td>
         <td><%= link_to 'Show', listing %></td>
+        <td><%= link_to 'edit', edit_listing_path(listing) %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
 
 <br>
 
 <%= link_to 'New Listing', new_listing_path %>
+<%= link_to 'Redaguoti', new_listing_path %>
 </div>

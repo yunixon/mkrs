@@ -1,72 +1,86 @@
-<div class="user-cover" style="background-image:url(http://pacdn.500px.org/316404/14ed503e7038112c7509a4533897480ee936279a/cover_2048.jpg?2); "></div>
-<div class="container">
+<div class="container small">
+<h3 class="divider">Profilio redagavimas</h3>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put,      :multipart => true }) do |f| %>
   <%= devise_error_messages! %>
 
-<div class="edit-profile-pic">
-<%= f.file_field :profile_image %>
-<%= image_tag(current_user.profile_image) %>
-</div>
-
-  <div class="edit-profile-wrapper">
-  <div class="input half first">
-  <span>Vardas</span>
-  <%= f.text_field :first_name %>
-  </div>
-
-  <div class="input half">
-  <span>Pavardė</span>
-  <%= f.text_field :last_name%>
-  </div>
-
-  <div class="input">
-  <span>Profilio vardas / Įmonės pavadinimas</span>
-  <%= f.text_field :name%>
-  <p>Jūsų paskyra bus pasiekiama adresu: <i>makers.lt/ProfilioVardas</i></p>
-  </div>
-
-  <div class="input">
-  <span>El. paštas</span>
-  <%= f.email_field :email %>
-  </div>
-
-  <div class="input bio">
-  <span>Apie mane</span>
-  <%= f.text_area :bio, placeholder: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem is that it has a more-or-less normal distribution of letters, as opposed to using, making it look like readable English.' %>
-  </div>
 
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+<div class="edit-profile-wrapper">
+  <h4>Profilio nuotrauka</h4>
+    <div class="row">
+      <div class="col-xs-2">
+        <%= image_tag(current_user.profile_image , :class => 'user-avatar') %>
+      </div>
+      <div class="col-xs-10">
+        <%= f.file_field :profile_image , :onchange => "readURL(this)", :class => 'user-image'  %>
+      </div>
+    </div>
+   <h4>Vartotojo informacija</h4>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Profilio vardas</label>
+     <%= f.text_field :name, :class => 'custom-form'%>
+      <p class="help-block">Your username gives you a personal site URL so you can share your art or collections.</p>
+    </div>
 
-  <div hidden>
-  <div class="input">
-  <span>El. paštas</span>
-  <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+    <div class="row">
+    <div class="col-xs-12 col-sm-6 l">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Vardas</label>
+      <%= f.text_field :first_name, :class => 'custom-form' %>
+    </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 r">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Pavardė</label>
+      <%= f.text_field :last_name, :class => 'custom-form' %>
+    </div>
+    </div>
+    </div>
 
-  <div class="input">
-  <span>El. paštas</span>
-  <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+    <div class="row">
+    <div class="col-xs-12 col-sm-6 l">
+    <div class="form-group">
+      <label for="exampleInputEmail1">El. paštas</label>
+      <%= f.email_field :email, :class => 'custom-form' %>
+    </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 r">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Miestas</label>
+      <%= f.text_field :location, :class => 'custom-form' %>
+    </div>
+    </div>
+    </div>
 
-  <div class="input">
-  <span>El. paštas</span>
-  <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-  </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Bio</label>
+      <%= f.text_area :bio, :rows => '5', :class => 'custom-form'%>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Facebook profilis</label>
+      <%= f.text_field :facebook_url, :class => 'custom-form' %>
+    </div>
+
+      <%= f.submit "Išsaugoti",:class => 'btn btn-primary right'  %>
+
+      <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+<% end -%>
+
+        <li class="sign_out"><%= link_to('Atsijungti', destroy_user_session_path, :method => :delete) %>
+        </li>
 
 
-  <div><%= f.submit "Išsaugoti",:class => 'save-btn'  %></div>
-<% end %>
-</div>
+    </div>
 
-<h3>Cancel my account</h3>
+    <% end %>
+    </div>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+ <%= button_to "Sunaikinti paskyrą", registration_path(resource_name), 
+                                        data: { confirm: "Are you sure?" }, 
+                                        method: :delete, :class => 'delete-acc' %> 
 
 </div>

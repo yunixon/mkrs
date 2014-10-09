@@ -11,24 +11,16 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
+//= require twitter/bootstrap
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
 //= require_tree .
 
-// Dropdown //
+/*
 
-$(document).on('page:change', function () {
-  $(".profile-pic").click(function(e){
-  	e.stopPropagation();
-    e.preventDefault();
-    $(".user-tooltip").show();
-  });
 
-  jQuery('html').click(function(){
-    if( !jQuery(event.target).hasClass('.user-tooltip') ){
-        jQuery('.user-tooltip').hide();
-    	}
-  });  
 
-});
 
+*/

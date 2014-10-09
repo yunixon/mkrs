@@ -1,0 +1,46 @@
+ <div id="header" class="header">
+  <div class="container-header">
+    <a class="header-logo"></a>
+    <ul class="nav">
+        <li class=""><a>Kategorijos</a></li>
+        <li class=""><a>Naujausi</a></li>
+        <li class=""><a>Populiariausi</a></li>
+    </ul>
+      <ul class="nav right">
+        <li class="btn-upload"><%= link_to 'Įkelti rankdarbį', new_listing_path %></li>
+        <% if user_signed_in? %>
+        <li><div class="profile-pic">
+           <a href="/<%=current_user.name %>"><%= image_tag(current_user.profile_image) %></a>
+        </div></li>
+        <li class="dropdown settings"><a href="#"><i class="icon-dot-3"></i></a></li>
+      </ul>
+
+      <div class="cf tooltip-top-right user-tooltip open">
+        <ul>
+            <a href='/<%=current_user.name %>'  class="tooltip-user-name"><li><%= current_user.name %>
+            <span class="tooltip-user-view-profile">Peržiūrėti profilį</span>
+            <li></a>
+            <li><%= link_to "Nustatymai", edit_user_registration_path %></li>
+            <li class="sign_out"><%= link_to('Atsijungti', destroy_user_session_path, :method => :delete) %></li>
+                <% else %>
+          <!---<li><%= link_to "Registruotis", new_user_registration_path %></li>  -->
+            <li class="login"><%= link_to "Prisijungti", new_user_session_path %></li>
+            <% end %>
+        </ul>
+      </div>
+</div> 
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+

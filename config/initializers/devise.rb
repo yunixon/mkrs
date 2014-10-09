@@ -21,6 +21,9 @@ Devise.setup do |config|
   # available as additional gems.
   require 'devise/orm/active_record'
 
+  config.http_authenticatable_on_xhr = false
+  config.navigational_formats = ["*/*", :html, :json]
+
 
 
   config.omniauth :facebook, "1510411019197109", "1bf2e04fd3280f38c302e618e28d503b",
