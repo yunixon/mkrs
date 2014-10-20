@@ -2,13 +2,14 @@
 
 class AvatarUploader < CarrierWave::Uploader::Base
 
+
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :dropbox
-  # storage :fog
+  # storage :dropbox
+    storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -23,7 +24,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   #   # For Rails 3.1+ asset pipeline compatibility:
   #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
   #
-     "https://dl-web.dropbox.com/get/Apps/Makers-lt/app_images/default_avatar.png?_subject_uid=331871441&w=AAAitvK6uH5opI9ysun59sNx81eaAkVds4xupBhQWTMBxg"
+     "https://dl.dropboxusercontent.com/s/cierojj3d4k7qcf/default_avatar.png?dl=0"
    end
 
   # Process files as they are uploaded:

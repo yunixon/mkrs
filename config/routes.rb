@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   get 'profiles/show'
 
   get 'profiles/edit'
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
 
   get 'seller/:id/listings' => "listings#seller"
 
-  get 'users/:id/finish_registration' => "user#finish"
+#  get 'users/:id/finish_registration' => "user#finish"
 
   root 'listings#index'
 
@@ -21,7 +22,6 @@ Rails.application.routes.draw do
 
   get 'pages/homepage'
 
-  
 
 
   #301 REDIRECT

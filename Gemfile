@@ -22,8 +22,6 @@ end
 
 gem 'thin'
 
-
-
 gem "figaro"
 gem "mini_magick"
 gem 'nested_form'
@@ -39,10 +37,14 @@ gem 'jquery-turbolinks'
 
 
 gem 'jquery-fileupload-rails'
+gem 'plupload-rails'
+gem 'haml', '~> 4.0.5'
+
 
 #Boostrap
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
+gem 'masonry-rails'
 
 
 # Use jquery as the JavaScript library
@@ -54,8 +56,12 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
-gem 'carrierwave'
 gem 'carrierwave-dropbox'
+gem 'carrierwave'
+gem 'fog'
+
+gem "nested_form"
+
 
 group :doc do
   gem 'sdoc', require: false

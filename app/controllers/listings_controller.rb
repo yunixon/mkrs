@@ -3,9 +3,9 @@ class ListingsController < ApplicationController
   before_filter :authenticate_user!, only: [ :new,:create ,:edit, :update, :destroy]
  # before_filter :check_user, only: [:edit, :update, :destroy]
 
-  def seller 
-    @listings = Listing.where(user: params[:id]).order("created_at DESC")
-  end
+#  def seller 
+#    @listings = Listing.where(user: params[:id]).order("created_at DESC")
+# end
 
 
   # GET /listings
@@ -17,6 +17,7 @@ class ListingsController < ApplicationController
   # GET /listings/1
   # GET /listings/1.json
   def show
+
   end
 
   # GET /listings/new
@@ -32,7 +33,7 @@ class ListingsController < ApplicationController
   # POST /listings.json
   def create
     @listing = Listing.new(listing_params)
-
+    @listing.user_id = current_user.id
     respond_to do |format|
       if @listing.save
         format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
@@ -89,7 +90,7 @@ class ListingsController < ApplicationController
 
     def check_user
       if current_user != @listing.user
-        redirect_to root_url, aler: "Sorry, this listing belongs to someone else"
+        redirect_to root_url, alert: "Sorry, this listing belongs to someone else"
       end
     end
 end

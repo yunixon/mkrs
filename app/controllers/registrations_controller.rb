@@ -6,6 +6,10 @@ class RegistrationsController < Devise::RegistrationsController
 
   # END of AJAX
 
+def show
+ 
+end
+
 def update
     @user = User.find(current_user.id)
 
