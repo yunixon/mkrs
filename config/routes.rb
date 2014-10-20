@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get 'profiles/edit'
 
   resources :listings
-
+  resources :photos
+  
   get 'pages/about'
   get 'pages/homepage'
   get 'pages/contact'

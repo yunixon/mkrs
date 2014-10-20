@@ -31,19 +31,38 @@ class ListingsController < ApplicationController
 
   # POST /listings
   # POST /listings.json
-  def create
-    @listing = Listing.new(listing_params)
-    @listing.user_id = current_user.id
-    respond_to do |format|
-      if @listing.save
-        format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
-        format.json { render :show, status: :created, location: @listing }
-      else
-        format.html { render :new }
-        format.json { render json: @listing.errors, status: :unprocessable_entity }
+  #def create
+  #  @listing = Listing.new(listing_params)
+  #  @listing.user_id = current_user.id
+  #  respond_to do |format|
+  #    if @listing.save
+  #      format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
+  #      format.json { render :show, status: :created, location: @listing }
+  #    else
+  #      format.html { render :new }
+  #      format.json { render json: @listing.errors, status: :unprocessable_entity }
+  #    end
+  #  end
+  #end
+
+ def create
+    @listing = current_user.albums.build(album_params)
+    authorize @listing
+    if @listing.save
+      # to handle multiple images upload on create
+      if params[:images]
+        params[:images].each { |image|
+          @listing.photos.create(image: image)
+        }
       end
+      flash[:notice] = "Your listing has been created."
+      redirect_to @listing
+    else 
+      flash[:alert] = "Something went wrong."
+      render :new
     end
   end
+
 
   # PATCH/PUT /listings/1
   # PATCH/PUT /listings/1.json
