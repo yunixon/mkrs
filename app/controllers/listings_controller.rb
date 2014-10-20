@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
-  before_action :set_listing, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!, only: [ :new,:create ,:edit, :update, :destroy]
+#  before_action :set_listing, only: [:show, :edit, :update, :destroy]
+#  before_filter :authenticate_user!, only: [ :new,:create ,:edit, :update, :destroy]
  # before_filter :check_user, only: [:edit, :update, :destroy]
 
 #  def seller 
@@ -17,12 +17,23 @@ class ListingsController < ApplicationController
   # GET /listings/1
   # GET /listings/1.json
   def show
+    @listing  = Listing.find(params[:id])
+    @photos = @listing.photos
 
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @listing }
+    end
   end
 
   # GET /listings/new
   def new
     @listing = Listing.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @listing }
+    end
   end
 
   # GET /listings/1/edit
@@ -46,8 +57,12 @@ class ListingsController < ApplicationController
   #end
 
  def create
-    @listing = current_user.albums.build(album_params)
-    authorize @listing
+    #@listing = current_user.listings.build(listing_params)
+    @listing = Listing.new(listing_params)
+
+
+
+
     if @listing.save
       # to handle multiple images upload on create
       if params[:images]

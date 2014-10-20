@@ -1,7 +1,8 @@
 class Listing < ActiveRecord::Base
 	mount_uploader :image, ImageUploader
 
-	has_many    :photos, :inverse_of => :listing, :dependent => :destroy
+	has_many    :photos, :dependent => :destroy
+	
 	# enable nested attributes for photos through listing class
 	accepts_nested_attributes_for :photos, allow_destroy: true
 

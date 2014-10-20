@@ -48,9 +48,9 @@
 
    <!-- <%= f.file_field :image, multiple: true, name: "listing[image]" %> -->
 
-   #images[] returned to the album as an array. We use file_field_tag since images is not @album's attribute
+
     <%= file_field_tag "images[]", type: :file, multiple: true %>
-    
+
   </div>
 
 

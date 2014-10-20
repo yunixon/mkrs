@@ -1,5 +1,5 @@
 <h1>Editing listing</h1>
-
+<%- model_class = @listing.class -%>
 <%= render 'form' %>
 <%= link_to 'Destroy', @listing, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link"%>
 
