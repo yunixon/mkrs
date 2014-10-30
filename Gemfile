@@ -63,7 +63,6 @@ gem 'carrierwave-dropbox'
 gem 'carrierwave'
 gem 'fog'
 
-gem "nested_form"
 
 
 group :doc do
