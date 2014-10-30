@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -13,7 +13,32 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Rankdarbiai
+        <% if user_signed_in? %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle settings" data-toggle="dropdown">
+            <%= image_tag(current_user.profile_image) %>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href='/<%=current_user.name %>'>Mano profilis</a></li>
+            <li><a href="#">Mano kolekcija</a></li>
+            <li><%= link_to "Nustatymai", edit_user_registration_path %></li>
+            <li><%= link_to('Atsijungti', destroy_user_session_path, 
+                                          :method => :delete, :class => 'logout') %></li>
+          </ul>
+        </li>
+        <% else %>
+        <li>
+        <%= link_to "Prisijungti", "#login", "data-toggle" => "modal", :class => 'login' %>
+        </li>
+        <li>
+        <%= link_to "Registruotis", "#sign_up", "data-toggle" => "modal", :class => 'register'%>
+        </li>
+        <% end %>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-left">
+       <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Rankdarbiai
         <span class="caret"></span></a>
           <ul class="dropdown-menu categories" role="menu">
             <li><a href="#"><i class="icon-monocle-mustache-streamline"></i>Testas</a></li>
@@ -25,19 +50,6 @@
         </li>
         <li><a href="#">Autoriai</a></li>
         <li><a href="#">Įkelti rankdarbį</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle settings" data-toggle="dropdown">
-            <img src="https://dl-web.dropbox.com/get/Apps/Makers-lt/app_images/default_avatar.png?_subject_uid=331871441&w=AAAitvK6uH5opI9ysun59sNx81eaAkVds4xupBhQWTMBxg"> 
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Mano profilis</a></li>
-            <li><a href="#">Mano kolekcija</a></li>
-            <li><a href="#">Profilio nustatymai</a></li>
-            <li class="divider"></li>
-            <li><a href="#" class="logout">Atsijungti</a></li>
-          </ul>
-        </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

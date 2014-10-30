@@ -21,8 +21,8 @@ Devise.setup do |config|
   # available as additional gems.
   require 'devise/orm/active_record'
 
-  config.http_authenticatable_on_xhr = false
-  config.navigational_formats = ["*/*", :html, :json]
+#  config.http_authenticatable_on_xhr = false
+# config.navigational_formats = ["*/*", :html, :json]
 
 
 
@@ -264,4 +264,6 @@ Devise.setup do |config|
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+
+
 end

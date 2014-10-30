@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :registrations => "registrations", omniauth_callbacks: 'omniauth_callbacks'}, path: 'vartotojas', path_names: { edit: 'redaguoti', sing_up: 'registaricja'}
 
+
+
   get 'pages/homepage'
 
 

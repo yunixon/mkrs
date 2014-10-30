@@ -17,20 +17,24 @@
       </div>
     </div>
    <h4>Vartotojo informacija</h4>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Profilio vardas</label>
-     <%= f.text_field :name, :class => 'custom-form'%>
-      <p class="help-block">Your username gives you a personal site URL so you can share your art or collections.</p>
+    <div class="row">
+      <div class="col-sm-12 ">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Profilio vardas</label>
+       <%= f.text_field :name, :class => 'custom-form'%>
+        <p class="help-block">Your username gives you a personal site URL so you can share your art or collections.</p>
+      </div>
+      </div>
     </div>
 
     <div class="row">
-    <div class="col-xs-12 col-sm-6 l">
+    <div class="col-xs-12 col-sm-6">
     <div class="form-group">
       <label for="exampleInputEmail1">Vardas</label>
       <%= f.text_field :first_name, :class => 'custom-form' %>
     </div>
     </div>
-    <div class="col-xs-12 col-sm-6 r">
+    <div class="col-xs-12 col-sm-6">
     <div class="form-group">
       <label for="exampleInputEmail1">Pavardė</label>
       <%= f.text_field :last_name, :class => 'custom-form' %>
@@ -39,39 +43,35 @@
     </div>
 
     <div class="row">
-    <div class="col-xs-12 col-sm-6 l">
-    <div class="form-group">
-      <label for="exampleInputEmail1">El. paštas</label>
-      <%= f.email_field :email, :class => 'custom-form' %>
-    </div>
-    </div>
-    <div class="col-xs-12 col-sm-6 r">
-    <div class="form-group">
-      <label for="exampleInputEmail1">Miestas</label>
-      <%= f.text_field :location, :class => 'custom-form' %>
-    </div>
-    </div>
-    </div>
-
-    <div class="form-group">
-      <label for="exampleInputEmail1">Bio</label>
-      <%= f.text_area :bio, :rows => '5', :class => 'custom-form'%>
+      <div class="col-xs-12 col-sm-6">
+      <div class="form-group">
+        <label for="exampleInputEmail1">El. paštas</label>
+        <%= f.email_field :email, :class => 'custom-form' %>
+      </div>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Miestas</label>
+        <%= f.text_field :location, :class => 'custom-form' %>
+      </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="exampleInputEmail1">Facebook profilis</label>
-      <%= f.text_field :facebook_url, :class => 'custom-form' %>
+    <div class="row end">
+      <div class="col-sm-12 ">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Bio</label>
+        <%= f.text_area :bio, :rows => '5', :class => 'custom-form'%>
+      </div>
+      </div>
     </div>
+
 
       <%= f.submit "Išsaugoti",:class => 'btn btn-primary right'  %>
 
-      <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
-<% end -%>
-
-        <li class="sign_out"><%= link_to('Atsijungti', destroy_user_session_path, :method => :delete) %>
-        </li>
-
+ <!--     <%= button_to "Sunaikinti paskyrą", registration_path(resource_name), 
+                                        data: { confirm: "Are you sure?" }, 
+                                        method: :delete, :class => 'btn btn-primary-op small red'%> -->
 
     </div>
 
@@ -79,8 +79,6 @@
     </div>
 
 
- <%= button_to "Sunaikinti paskyrą", registration_path(resource_name), 
-                                        data: { confirm: "Are you sure?" }, 
-                                        method: :delete, :class => 'delete-acc' %> 
+ 
 
 </div>

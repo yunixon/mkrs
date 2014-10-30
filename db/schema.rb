@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020100320) do
+ActiveRecord::Schema.define(version: 20141029173607) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -43,6 +43,10 @@ ActiveRecord::Schema.define(version: 20141020100320) do
     t.integer  "user_id"
     t.string   "image"
     t.string   "category"
+    t.string   "materials"
+    t.boolean  "exchangeable",       default: false
+    t.string   "dimentions"
+    t.string   "state"
   end
 
   create_table "photos", force: true do |t|

@@ -1,13 +1,13 @@
 class PhotosController < ApplicationController
 # truncated for brevity.
 
-# GET /pictures
-  # GET /pictures.json
+  # GET /photos
+  # GET /photos.json
   def index
 
     @listing = Listing.find(params[:listing_id])
 
-    @photos = @gallery.photos
+    @photos = @listing.photos
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,8 +15,8 @@ class PhotosController < ApplicationController
     end
   end
 
-  # GET /pictures/1
-  # GET /pictures/1.json
+  # GET /photos/1
+  # GET /photos/1.json
   def show
     @photo = Photo.find(params[:id])
 
@@ -50,6 +50,7 @@ class PhotosController < ApplicationController
   # POST /pictures.json
   def create
     @photo = Photo.new(params[:photo])
+    @photo.user_id = current_user.id
 
     if @photo.save
       respond_to do |format|

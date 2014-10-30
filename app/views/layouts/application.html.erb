@@ -8,20 +8,19 @@
 <link href="https://fontastic.s3.amazonaws.com/tqiX9DLwWDK4vhPrXZqLEX/icons.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
+	  <script type="text/javascript">
+	 $(function () { 
+	    $("#login").modal({show:false});
+	});  
+	</script>
 </head>
 <body>
 	<%= render 'layouts/header' %>
 
-	<% flash.each do |name, msg| %>
-	    <% if msg.is_a?(String) %>
-	      <div class="alert alert-success">
-	      <div class="container">
-	        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-	      </div>
-	      </div>
-	    <% end %>
-	  <% end %>
-
   	<%= yield %>
+
+  	<%= render "welcome/login_modal" %>
+	<%= render "welcome/sign_up_modal" %>
+
 </body>
 </html>

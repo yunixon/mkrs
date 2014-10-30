@@ -1,43 +1,41 @@
 <div class="container">
 
-</div>                
+<div class="row">
+<div class="profile-info">
+  <div class="col-md-1">
+      <div class="avatar"><%= image_tag @user.profile_image %></div>
+  </div>
+
+  <div class="col-md-7">
+  <p class="h3"><%= @user.name %></p>
+  <p class="location"><i class="icon-placepin"></i>Vilnius</p>
+  <p class="facebook-url"><i class="icon-link"></i></p>
+  <p class="user-bio alt"><%= @user.bio %></p>
+  </div>
+  <div class="col-md-4"></div>
+</div>
 
 
+</div>
 
 
+<h1>Listing listings</h1>
 
-
-
-
-
-
-
-
-
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
- <% if @listings %>
- <% @listings.each do |listing| %>
-      <tr>
-        <td><%= link_to image_tag(listing.image_1.url), listing %></td>
-        <td><%= listing.name %></td>
-        <td><%= listing.user.name %></td>
-        <td><%= listing.description %></td>
-        <td><%= listing.price %></td>
-        <td><%= link_to 'Show', listing %></td>
-      </tr>
-  <% end %>
-  <% end %>
-
-    </tbody>
-</table>
+<div id="item-container" class="transitions-enabled infinite-scroll clearfix">
+<% @listings.each do |listing| %>
+<div class="box col1">
+  <div class="item-small">
+  <%= link_to '', listing, :class => 'item-link' %>
+    <div class="item-info">
+      <p class="price"><%= listing.price %> €</p>
+      <div class="item-info-bottom">
+        <p class="item-name"><%= listing.name %></p>
+        <p class="item-author"><a href="#asd"><%= listing.user.name %></a></p>
+      </div>
+    </div>
+ <%= link_to image_tag(listing.photos.first.image.small.url), listing %> 
+  </div>
+</div>
+<% end %>
+</div>
+</div>

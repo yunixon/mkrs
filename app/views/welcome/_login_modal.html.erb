@@ -1,0 +1,45 @@
+
+<div class="modal fade" id="login" tabindex="-1" 
+						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Prisijunkite prie Makers</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    
+    <%- resource_class.omniauth_providers.each do |provider| %>
+    	<%= link_to "<span style='font-weight:300'>Prisijungti su</span> Facebook".html_safe,
+    			omniauth_authorize_path(resource_name, provider), 
+    			:class => 'btn btn-primary facebook' %>
+  	<% end -%>
+  	<div class="separator"><p>arba</p></div>
+
+    <div class="form-group">
+  	<%= f.email_field :email, autofocus: true, 
+    				  :class => 'custom-form', :placeholder => 'El. paštas' %>
+    </div>
+
+		<div class="form-group">
+    <%= f.password_field :password, autocomplete: "off", 
+    					 :class => 'custom-form', :placeholder => 'Slaptažodis' %>
+   	</div>
+
+  <div><%= f.submit "Prisijungti", :class => 'btn btn-primary' %></div>
+	<% end %>
+	<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+	  <%= link_to "Pamiršote slaptažodį?", new_password_path(resource_name), 
+	  																		 :class => 'password-recover' %><br />
+	<% end -%>
+
+      </div>
+      <div class="modal-footer">
+		  <p>Esate naujas vatotojas?</p><%= link_to " Užsiregistruokite!", new_registration_path(resource_name),
+		  :class => 'lightblue' %><br />
+      </div>
+    </div>
+  </div>
+</div>

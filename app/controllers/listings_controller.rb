@@ -1,7 +1,9 @@
 class ListingsController < ApplicationController
+
+  include ActionView::Helpers::NumberHelper
 #  before_action :set_listing, only: [:show, :edit, :update, :destroy]
-#  before_filter :authenticate_user!, only: [ :new,:create ,:edit, :update, :destroy]
- # before_filter :check_user, only: [:edit, :update, :destroy]
+  before_filter :authenticate_user!, only: [ :new,:create ,:edit, :update, :destroy]
+#  before_filter :check_user, only: [:edit, :update, :destroy]
 
 #  def seller 
 #    @listings = Listing.where(user: params[:id]).order("created_at DESC")
@@ -12,6 +14,12 @@ class ListingsController < ApplicationController
   # GET /listings.json
   def index
     @listings = Listing.all.order("created_at DESC")
+
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @listings }
+    end
   end
 
   # GET /listings/1
@@ -38,6 +46,7 @@ class ListingsController < ApplicationController
 
   # GET /listings/1/edit
   def edit
+    @listing = Listing.find(params[:id])
   end
 
   # POST /listings
@@ -59,9 +68,7 @@ class ListingsController < ApplicationController
  def create
     #@listing = current_user.listings.build(listing_params)
     @listing = Listing.new(listing_params)
-
-
-
+    @listing.user_id = current_user.id
 
     if @listing.save
       # to handle multiple images upload on create
@@ -82,26 +89,34 @@ class ListingsController < ApplicationController
   # PATCH/PUT /listings/1
   # PATCH/PUT /listings/1.json
   def update
+    @listing  = Listing.find(params[:id])
+
     respond_to do |format|
-      if @listing.update(listing_params)
-        format.html { redirect_to @listing, notice: 'Listing was successfully updated.' }
-        format.json { render :show, status: :ok, location: @listing }
+      if @listing.update_attributes(listing_params)
+        if params[:images]
+          # The magic is here ;)
+          params[:images].each { |image|
+            @listing.photos.create(image: image)
+          }
+        end
+        format.html { redirect_to @listing, notice: 'Gallery was successfully updated.' }
+        format.json { head :no_content }
       else
-        format.html { render :edit }
+        format.html { render action: "edit" }
         format.json { render json: @listing.errors, status: :unprocessable_entity }
       end
-    end
+      end
   end
 
   # DELETE /listings/1
   # DELETE /listings/1.json
   def destroy
+  
+    @listing = Listing.find(params[:id])
     @listing.destroy
-    
-    @listing.remove_image!
 
     respond_to do |format|
-      format.html { redirect_to listings_url, notice: 'Listing was successfully destroyed.' }
+      format.html { redirect_to listings_url }
       format.json { head :no_content }
     end
   end
@@ -119,7 +134,7 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:name, :description, :price, :image)
+      params.require(:listing).permit(:name, :description, :price, :image, :materials, :dimentions, :exchangeable, :state)
     end
 
     def check_user
@@ -127,4 +142,5 @@ class ListingsController < ApplicationController
         redirect_to root_url, alert: "Sorry, this listing belongs to someone else"
       end
     end
+
 end
