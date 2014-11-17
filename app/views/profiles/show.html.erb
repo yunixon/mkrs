@@ -1,41 +1,37 @@
 <div class="container">
 
-<div class="row">
-<div class="profile-info">
-  <div class="col-md-1">
-      <div class="avatar"><%= image_tag @user.profile_image %></div>
+  <div class="profile-info">
+   <div class="row">
+    <div class="col-sm-1 col-xs-12">
+        <div class="avatar"><%= image_tag @user.profile_image %></div>
+    </div>
+
+    <div class="col-sm-7 col-xs-12">
+      <p class="h3"><%= @user.user_name %></p>
+      <p class="user-location"><i class="icon-placepin"></i><%= @user.location %></p>
+      <p class="user-bio"><%= @user.bio %></p>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
   </div>
 
-  <div class="col-md-7">
-  <p class="h3"><%= @user.name %></p>
-  <p class="location"><i class="icon-placepin"></i>Vilnius</p>
-  <p class="facebook-url"><i class="icon-link"></i></p>
-  <p class="user-bio alt"><%= @user.bio %></p>
+
   </div>
-  <div class="col-md-4"></div>
-</div>
 
-
-</div>
-
-
-<h1>Listing listings</h1>
+  <div class="container">
 
 <div id="item-container" class="transitions-enabled infinite-scroll clearfix">
-<% @listings.each do |listing| %>
-<div class="box col1">
-  <div class="item-small">
-  <%= link_to '', listing, :class => 'item-link' %>
-    <div class="item-info">
-      <p class="price"><%= listing.price %> €</p>
-      <div class="item-info-bottom">
-        <p class="item-name"><%= listing.name %></p>
-        <p class="item-author"><a href="#asd"><%= listing.user.name %></a></p>
+  <% @listings.each do |listing| %>
+    <div class="box col3">
+      <div class="item-small">
+       <%= link_to '', listing, :class => 'item-link' %>
+        <%= image_tag listing.photos.first.image.small.url %> 
+          <div class="item-info">
+            <p class="item-name"><%= listing.name %></p>
+            <p class="item-price"><%= listing.price %> €</p>
+          </div>
       </div>
     </div>
- <%= link_to image_tag(listing.photos.first.image.small.url), listing %> 
-  </div>
-</div>
-<% end %>
+  <% end %>
 </div>
 </div>

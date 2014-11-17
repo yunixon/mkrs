@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
  
-  def homepage
+  def index
+		@listings = Listing.where(:id => [1,2])
   end
 
   def about

@@ -1,0 +1,27 @@
+
+<div class="modal fade" id="message" tabindex="-1" 
+						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background: url('<%= @listing.photos.first.image.url %>')" >
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id=""><%= @listing.name %></h4>
+      </div>
+      
+      <div class="modal-body">
+    <%= form_for :conversation, url: conversations_path do |f| %>
+    <%= f.text_area :recipients, :value => @listing.user.user_name %>
+    <%= f.text_area :subject, :value => 'Noriu pirkti "' + @listing.name + '"' %> 
+    <%= f.text_area :body, :placeholder => 'Susitark dėl pirkimo, siuntimo ar kitų dalykų.' %>
+    <div class="form-actions"> 
+    </div>
+      </div>
+      <div class="modal-footer">
+		  <%= f.submit "Siųsti pranešimą" ,:class => 'btn btn-primary right'  %>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <% end %>

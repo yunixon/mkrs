@@ -1,0 +1,12 @@
+<%= form_for @category do |f| %>
+
+  <div class="form-inputs">
+    <%= f.text_field :name %>
+    <%= f.text_field :description %>
+    <%= f.text_field :hero_image %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit :submit %>
+  </div>
+<% end %>

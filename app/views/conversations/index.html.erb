@@ -1,0 +1,33 @@
+<div class="container medium">
+	<div class="row">
+			<h1>Pranešimai</h1>
+	</div>
+</div>
+<div class="container medium inbox-nav">
+	<ul class="nav nav-tabs" role="tablist">
+	  <li role="presentation" class="active"><a href="#inbox" role="tab" data-toggle="tab">
+	  Gauti <% if count != '0' %> (<%= count %>) <% end %></a></li>
+	  <li role="presentation"><a href="#sentbox" role="tab" data-toggle="tab">
+	  Išsiųsti</a></li>
+	  <li role="presentation"><a href="#trash" role="tab" data-toggle="tab">
+	  Pašalinti</a></li>
+	</ul>
+</div>
+
+<div class="container medium inbox">
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="inbox">
+	<%= render(collection: mailbox.inbox, partial: 'conversation') || '
+	<h3>Neturite gautų pranešimų</h3>'.html_safe %>
+  </div>
+  <div role="tabpanel" class="tab-pane" id="sentbox">
+	<%= render(collection: mailbox.sentbox, partial: 'conversation') || '
+	<h3>Neturite išsiųstų pranešimų</h3>'.html_safe  %>
+  </div>
+  <div role="tabpanel" class="tab-pane" id="trash">
+	<%=  render(collection: mailbox.trash, partial: 'conversation') || '
+	<h3>Neturite pašalintų pranešimų</h3>'.html_safe %>
+  </div>
+</div>
+
+</div>

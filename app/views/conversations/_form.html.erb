@@ -1,0 +1,11 @@
+<p>asd <%= @unread  %> </p>
+<%= form_for :conversation, url: conversations_path do |f| %>
+	<%= f.text_field :recipients %>
+	<%= f.text_field :subject %> 
+	<%= f.text_area :body %>
+		<div class="form-actions">
+			
+      <%= f.submit :submit ,:class => 'btn btn-primary right'  %>
+
+		</div>
+<% end %>

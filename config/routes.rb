@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+
+  root 'pages#index'
+
+
   get 'profiles/show'
 
   get 'profiles/edit'
@@ -13,19 +17,25 @@ Rails.application.routes.draw do
 
   get 'seller/:id/listings' => "listings#seller"
 
-#  get 'users/:id/finish_registration' => "user#finish"
 
-  root 'listings#index'
+  get 'profiles/:id', to: 'profiles#show'
 
-  get '/:id', to: 'profiles#show'
-
-  devise_for :users, :controllers => { :registrations => "registrations", omniauth_callbacks: 'omniauth_callbacks'}, path: 'vartotojas', path_names: { edit: 'redaguoti', sing_up: 'registaricja'}
+  devise_for :users, :controllers => { :registrations => "registrations", :sessions => 'sessions', omniauth_callbacks: 'omniauth_callbacks'}
 
 
 
   get 'pages/homepage'
 
+  resources :categories
 
+
+  resources :conversations, only: [:index, :show, :new, :create] do
+    member do
+      post :reply
+      post :trash
+      post :untrash
+    end
+  end
 
   #301 REDIRECT
 

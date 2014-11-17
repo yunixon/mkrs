@@ -1,23 +1,21 @@
 <div class="container">
+
 <div id="item-container" class="transitions-enabled infinite-scroll clearfix">
-<% @listings.each do |listing| %>
-<div class="box col1">
-  <div class="item-small">
-    <div class="item-info">
-      <%= link_to '', listing, :class => 'item-link' %>
-      <p class="price"><%= listing.price %> €</p>
-      <div class="item-info-bottom">
-        <p class="item-name"><%= listing.name %></p>
-        <p class="item-author"><a href="/<%= listing.user.name %>"><%= listing.user.name %>
-        </a></p>
+  <% @listings.each do |listing| %>
+    <div class="box col3">
+      <div class="item-small">
+       <%= link_to '', listing, :class => 'item-link' %>
+        <%= image_tag listing.photos.first.image.small.url %> 
+          <div class="item-info">
+            <p class="item-name"><%= listing.name %></p>
+            <p class="item-price"><%= listing.price %> €</p>
+          </div>
       </div>
     </div>
+  <% end %>
+</div>
 
- <%= image_tag listing.photos.first.image.small.url %> 
-  </div>
-</div>
-<% end %>
-</div>
+
 
 
 

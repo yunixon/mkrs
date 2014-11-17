@@ -1,0 +1,44 @@
+<% conversation.mark_as_read(current_user) %>
+
+
+<div class="container medium">
+<h1>Pokalbis su <%= conversation.receipts_for(current_user).last.message.sender.user_name %></h1>
+<h3 class="conversation-subject"><%= conversation.subject %></h3>			
+			<%= content_tag_for(:div, conversation.receipts_for(current_user), class: 'row') do |receipt| %>
+				<% message = receipt.message %>
+				<% if current_user.id != message.sender_id %>
+					<div class="col-md-1">
+						<div class="inbox-profile-image">
+							<%= image_tag message.sender.profile_image.medium %>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="chat-message-body received">
+							<p><%= message.body %></p>
+						</div>
+						<div class="time-ago">
+							<i class="icon-clock"></i><%="#{time_ago_in_words(message.created_at)} ago "%>
+						</div>
+					</div>
+				<% else%>
+					<div class="col-md-6 col-md-offset-5">
+						<div class="chat-message-body sent">
+							<p><%= message.body %></p>
+						</div>
+						<div class="time-ago">
+							<i class="icon-clock"></i><%="#{time_ago_in_words(message.created_at)} ago "%>
+						</div>
+					</div>
+					<div class="col-md-1">
+						<div class="inbox-profile-image">
+							<%= image_tag message.sender.profile_image.medium %>
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+
+
+			<%= render 'messages/form', conversation: conversation %>
+		</div>
+
+</div>

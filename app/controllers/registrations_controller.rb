@@ -1,10 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
 
-# AJAX	
-
-
-
-  # END of AJAX
 
 def show
  

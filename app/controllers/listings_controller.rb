@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
 
   include ActionView::Helpers::NumberHelper
+
 #  before_action :set_listing, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, only: [ :new,:create ,:edit, :update, :destroy]
 #  before_filter :check_user, only: [:edit, :update, :destroy]
@@ -134,7 +135,7 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:name, :description, :price, :image, :materials, :dimentions, :state, :exchangeable)
+      params.require(:listing).permit(:name, :description, :price, :image, :materials, :category_id, :dimentions, :state, :exchangeable)
     end
 
     def check_user

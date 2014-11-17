@@ -81,3 +81,23 @@ $(function(){
 	});
 });
 
+
+/* Homepage */
+
+$(function(){
+
+  $('#featured-item-container').masonry({
+    itemSelector: '.box',
+    columnWidth: 180,
+    gutterWidth: 18
+  });
+
+  $('#featured-item-container .box:first-child').addClass('col4-1');
+  $('#featured-item-container .box:nth-child(2)').addClass('col4');
+});
+
+
+$(function(){
+
+  $('.dropdown-toggle.settings span').removeClass('caret').addClass('icon-caret-down-two');
+});

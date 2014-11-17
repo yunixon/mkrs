@@ -1,0 +1,20 @@
+
+<%= form_for :message, url: reply_conversation_path(conversation) do |f| %>
+<div class="row">
+<div class="col-md-6 col-md-offset-5">
+	<div class="chat-message-body reply">
+		<%= f.text_area :body, rows: '3', placeholder: 'Rašyti žinutę...' %>
+	</div>
+</div>
+	<div class="col-md-1">
+		<div class="inbox-profile-image">
+			<%= image_tag current_user.profile_image.medium %>
+		</div>
+</div>
+</div>
+<div class="row">
+	<div class="col-md-7 col-md-offset-5">
+		<%= f.submit 'Siųsti pranešimą' ,:class => 'btn btn-primary'  %>
+	</div>
+</div>
+<% end %>

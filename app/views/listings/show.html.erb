@@ -52,7 +52,7 @@
               </div>
               <div class="col-md-8">
                 <p class="info">
-                <a href="/<%= @listing.user.name %>"><%= @listing.user.name %></a>
+                <a href="/<%= @listing.user.name %>"><%= @listing.user.user_name %></a>
                 </p>
               </div>
             </div>
@@ -99,23 +99,30 @@
           </div>  
 
           <p class="description"><%= @listing.description %></p>
+          <% if @listing.exchangeable == true %>
+          <div class="exchangeable">
+          <i class="icon-brush"></i><p>Galimi panašūs rankdarbiai pagal užsakymą.</p>
+          </div>
+          <% end %>
           <% if current_user == @listing.user %>
             <%= link_to 'Redaguoti', edit_listing_path(@listing), :class => 'btn btn-primary' %>
+            <%= link_to 'Ištrinti', @listing, method: :delete, data: { confirm: 'Ar tikrai norite ištrinti rankdarbį?' }, class: "btn btn-primary red"%>
           <% else %>
-            <button type="button" class="btn btn-primary">Noriu pirkti</button>
+            <%= link_to "Noriu pirkti", "#message", "data-toggle" => "modal", :class => 'btn btn-primary' %>
           <% end %>
 
         </div>
     </div> 
 
-</div>
 
 </div>
+
+</div>
 </div>
 
 
 
-
+<%= render "conversations/message_modal" %>
 
 
 

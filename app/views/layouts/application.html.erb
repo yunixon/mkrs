@@ -4,20 +4,15 @@
   <title>MkrsLt</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,400italic,600italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <link href="https://fontastic.s3.amazonaws.com/tqiX9DLwWDK4vhPrXZqLEX/icons.css" rel="stylesheet">
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto:100,400,300,500,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
-	  <script type="text/javascript">
-	 $(function () { 
-	    $("#login").modal({show:false});
-	});  
-	</script>
 </head>
 <body>
-	<%= render 'layouts/header' %>
 
+	<%= render 'layouts/header'%>
   	<%= yield %>
+  	<%= render 'layouts/footer' %>
 
   	<%= render "welcome/login_modal" %>
 	<%= render "welcome/sign_up_modal" %>

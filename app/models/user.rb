@@ -2,9 +2,10 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
-  validates :name, presence: true
-  validates_uniqueness_of :name
+  validates :user_name, presence: true
+  validates_uniqueness_of :user_name
 
+  acts_as_messageable
 
 
   has_many :listings, dependent: :destroy
@@ -51,7 +52,7 @@ class User < ActiveRecord::Base
         user = User.new(
           first_name: auth.info.first_name,
           last_name: auth.info.last_name,
-          name: auth.extra.raw_info.name,
+          user_name: auth.extra.raw_info.name,
           #username: auth.info.nickname || auth.uid,
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20],
@@ -74,6 +75,14 @@ class User < ActiveRecord::Base
 
   def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX
+  end
+
+  def name
+    email
+  end
+
+  def mailboxer_email(object)
+    email
   end
 
 end

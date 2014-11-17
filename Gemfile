@@ -6,8 +6,7 @@ gem 'rails', '4.1.1'
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+
 gem 'coffee-script', '~> 2.3.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
@@ -22,7 +21,7 @@ group :production do
 end
 
 gem 'thin'
-
+gem "jquery-fileupload-rails"
 gem 'bootstrap-tagsinput-rails'
 
 gem "figaro"
@@ -38,9 +37,8 @@ gem 'omniauth-linkedin'
 gem 'devise'
 gem 'jquery-turbolinks'
 
+gem 'rails4_client_side_validations'
 
-gem 'jquery-fileupload-rails'
-gem 'plupload-rails'
 gem 'haml', '~> 4.0.5'
 
 
@@ -63,7 +61,11 @@ gem 'carrierwave-dropbox'
 gem 'carrierwave'
 gem 'fog'
 
+gem 'mailboxer'
+gem 'simple_form'
 
+
+gem 'coffee-rails'
 
 group :doc do
   gem 'sdoc', require: false
