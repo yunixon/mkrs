@@ -16,9 +16,9 @@
 	<div class="subcategories">
 				<% @subcategories.each do |subcategory| %>
 					<% if subcategory.name == @subcategory.name %>
-					<%= link_to subcategory.name, subcategory, class: 'active'  %>
+					<%= link_to subcategory.name,  [@category, subcategory], class: 'active'  %>
 					<% else %>
-					<%= link_to subcategory.name, subcategory%>
+					<%= link_to subcategory.name,  [@category, subcategory] %>
 					<% end%>
 
 				<% end %>
