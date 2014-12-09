@@ -260,11 +260,6 @@ GEM
       sprockets-rails (~> 2.0)
     rails4_client_side_validations (0.0.4)
       rails (>= 4.0)
-    rails_12factor (0.0.3)
-      rails_serve_static_assets
-      rails_stdout_logging
-    rails_serve_static_assets (0.0.2)
-    rails_stdout_logging (0.0.3)
     railties (4.1.8)
       actionpack (= 4.1.8)
       activesupport (= 4.1.8)
@@ -359,7 +354,6 @@ DEPENDENCIES
   pg
   rails (= 4.1.8)
   rails4_client_side_validations
-  rails_12factor
   sass-rails
   sdoc
   simple_form
