@@ -20,6 +20,7 @@
  *= require 'masonry/transitions'
  *= require bootstrap-tagsinput
  *= require dropzone/dropzone
+ *= require jquery-ui
  *= require jquery.fileupload-ui
  *= require bootstrap-select
  *= require_self
