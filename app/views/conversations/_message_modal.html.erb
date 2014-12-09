@@ -11,8 +11,8 @@
       
       <div class="modal-body">
     <%= form_for :conversation, url: conversations_path do |f| %>
-    <%= f.text_area :recipients, :value => @listing.user.user_name %>
-    <%= f.text_area :subject, :value => 'Noriu pirkti "' + @listing.name + '"' %> 
+    <%= f.hidden_field :recipients, :value => @listing.user.user_name %>
+    <%= f.hidden_field :subject, :value => 'Noriu pirkti "' + @listing.name + '"' %> 
     <%= f.text_area :body, :placeholder => 'Susitark dėl pirkimo, siuntimo ar kitų dalykų.' %>
     <div class="form-actions"> 
     </div>

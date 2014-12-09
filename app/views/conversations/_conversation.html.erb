@@ -1,5 +1,9 @@
 
+
+			<% if conversation.is_unread?(current_user) == false %>
 			<%= content_tag_for(:div, conversation, class: 'row') do |conversation| %>
+
+
 			<%= link_to ' ', conversation_path(conversation), class: 'message-link' %>
 				<div class="col-md-1 col-xs-1">
 					<div class="inbox-profile-image">
@@ -19,15 +23,50 @@
 						<p class="message-body">
 						<span style="font-weight:700;color:#696a7d">
 						<%= conversation.receipts_for(current_user).first.message.subject %>.</span>
-						<%= conversation.receipts_for(current_user).first.message.body %>
+						<%= conversation.receipts_for(current_user).last.message.body %>
 						</p>
 				</div> 
 				<div class="col-md-1">
 			  	<% if conversation.is_completely_trashed?(current_user) %>
-			  		<%= link_to 'Untrash', untrash_conversation_path(conversation), method: :post %>
+			  		<%= link_to '', untrash_conversation_path(conversation), class: 'icon-ccw', method: :post %>
 			  	<% else %>
-			  		<%= link_to '', trash_conversation_path(conversation), class: 'icon-x detele', method: :post %>
+			  		<%= link_to '', trash_conversation_path(conversation), class: 'icon-trash detele', method: :post %>
 			  	<% end %>
 				</div>
 
+			<% end %>
+
+			<% else %>
+
+		<%= content_tag_for(:div, conversation, class: 'row conversation-unread') do |conversation| %>
+			<%= link_to ' ', conversation_path(conversation), class: 'message-link' %>
+				<div class="col-md-1 col-xs-1">
+					<div class="inbox-profile-image">
+						<%= image_tag conversation.receipts_for(current_user).first.message.sender.profile_image.medium %>
+					</div>
+					</div>
+					<div class="col-md-2 col-xs-2">
+					<div class="sender-name">
+						<p><%= conversation.receipts_for(current_user).first.message.sender.user_name %></p>
+					</div>
+					<div class="time-ago">
+					<i class="icon-clock"></i>
+					<%="#{time_ago_in_words(conversation.updated_at)} ago "%>
+					</div>
+				</div>
+				<div class="col-md-8 col-xs-8">
+						<p class="message-body">
+						<span style="font-weight:700;color:#696a7d">
+						<%= conversation.receipts_for(current_user).first.message.subject %>.</span>
+						<%= conversation.receipts_for(current_user).last.message.body %>
+						</p>
+				</div> 
+				<div class="col-md-1">
+			  	<% if conversation.is_completely_trashed?(current_user) %>
+			  		<%= link_to '', untrash_conversation_path(conversation), class: 'icon-ccw', method: :post %>
+			  	<% else %>
+			  		<%= link_to '', trash_conversation_path(conversation), class: 'icon-trash detele', method: :post %>
+			  	<% end %>
+				</div>
+			<% end %>
 			<% end %>

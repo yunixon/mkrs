@@ -1,0 +1,39 @@
+	
+
+	<div class="cat-hero"  style="background: url('<%= @parent.hero_image %>') center center">
+		<div class="container">
+			<div class="cat-info">
+						<p class="cat-name">
+							<%= @subcategory.name %>
+						</p>
+
+
+					<p class="cat-description">
+						<%= @subcategory.description %>
+					</p>
+
+			</div>
+	<div class="subcategories">
+				<% @subcategories.each do |subcategory| %>
+					<% if subcategory.name == @subcategory.name %>
+					<%= link_to subcategory.name, subcategory, class: 'active'  %>
+					<% else %>
+					<%= link_to subcategory.name, subcategory%>
+					<% end%>
+
+				<% end %>
+
+	</div>
+
+
+
+		</div>
+
+	</div>
+
+<div class="container">
+
+<%= render 'forms/items' %>
+
+</div>
+

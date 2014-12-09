@@ -1,2 +1,21 @@
-<h1>Pages#contact</h1>
-<p>Find me in app/views/pages/contact.html.erb</p>
+
+<div class="container">
+
+<div id="featured-item-container" class="transitions-enabled infinite-scroll clearfix">
+  <% @listings.each do |listing| %>
+    <div class="box">
+      <div class="item-small">
+       <%= link_to '', listing, :class => 'item-link' %>
+        <%= image_tag listing.photos.first.image.small.url %> 
+      </div>
+    </div>
+  <% end %>
+</div>
+</div>
+
+<%= if @object.present? %>
+<%= Listing.find_by(id: "1").name %>
+<%= Category.find_by(id: "1").name %>
+
+
+<%= link_to 'asdasdsd', Listing.find_by(id: "1"), :class => 'item-link' %> 

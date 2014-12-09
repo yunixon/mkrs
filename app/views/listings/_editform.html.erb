@@ -1,0 +1,113 @@
+
+
+<div class="container">
+  <%= form_for(@photo, html: { multipart: true, class: "dropzone"}) do |f|  %>
+  <%= f.hidden_field :listing_id, value: @listing.id %>
+  <%= @listing.id %>
+    <div class="fallback">
+      <%= f.file_field :image %><br>
+      <%= f.submit "Upload" %>
+    </div>
+  <% end %>
+</div>
+
+
+<div class="container">
+<%= form_for @listing , :html => { :multipart => true }, :validate => true do |f| %>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="listing-upload">
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-9">
+            <label for="Pavadinimas">Rankdarbio pavadinimas</label>   
+            <%= f.text_field :name, :class => 'custom-form'%>         
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            <div class="form-group">
+              <label for="Kategorija">Kaina</label>
+              <div class="input-group">
+                <%= f.text_field :price, :class => 'custom-form custom' %>
+                <div class="input-group-addon">€</div>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+        <div class="row">
+          <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+            <label for="Kategorija">Kategorija</label>
+            <%= f.select :category_id, 
+            options_for_select([*Category.all.map{ |c| 
+            [c.name, c.id] }]) , {:prompt => 'Pasirinkite kategoriją' }, { class: 'selectpicker select' } %>
+
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+            <label for="Kategorija">Kategorija</label>
+            <%= f.select :subcategory_id, options_for_select([*Subcategory.all.map { |c|
+            [c.name, c.id] }]), { prompt: 'Pasirinkite kategoriją' } , { class: 'selectpicker select' } %>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+            <label for="Rankdarbio būsena">Rankdarbio būsena</label>
+              <%= f.select :state, ['Paruoštas siuntimui', 'Gaminamas gavus užsakymą'],
+                           {:prompt => 'Pasirinkite būseną'} , class: 'selectpicker select' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 ">
+            <div class="form-group">
+              <label for="Aprašymas">Aprašymas</label>
+              <%= f.text_area :description, :rows => '5', :class => 'custom-form' %>
+            </div>
+            </div>
+        </div>
+        <div class="split"></div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 ">
+            <div class="form-group">
+              <label for="Panaudotos medžiagos">Panaudotos Medžiagos</label>
+              <%= f.text_field :materials, 'data-role'=>'tagsinput' %>
+            </div>
+          </div>
+        </div>
+
+          <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+            <label for="Aprašymas">Galimi panašūs rankdarbiai pagal užsakymą</label>
+              <div class="onoffswitch">
+          <input name="listing[exchangeable]" type="hidden" value="0">
+          <input name="listing[exchangeable]" type="checkbox" value="1"  class="onoffswitch-checkbox" id="myonoffswitch">
+              <label class="onoffswitch-label" for="myonoffswitch">
+                  <span class="onoffswitch-inner"></span>
+                  <span class="onoffswitch-switch"></span>
+              </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="split"></div>
+            <%= f.submit 'Paskelbti', :class => 'btn btn-primary' %>
+        </div>
+    </div> 
+
+</div>
+
+</div>
+
+
+<% end %>

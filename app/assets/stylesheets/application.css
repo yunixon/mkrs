@@ -19,7 +19,10 @@
  *= require 'masonry/right-to-left'
  *= require 'masonry/transitions'
  *= require bootstrap-tagsinput
- *= require_tree .
+ *= require dropzone/dropzone
+ *= require jquery-ui
+ *= require jquery.fileupload-ui
+ *= require bootstrap-select
  *= require_self
  *= require bootstrap_and_overrides
 

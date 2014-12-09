@@ -97,7 +97,113 @@ $(function(){
 });
 
 
+// $(function(){
+
+//   $('.dropdown-toggle.settings span').removeClass('caret').addClass('icon-caret-down-two');
+// });
+
+
+
 $(function(){
 
-  $('.dropdown-toggle.settings span').removeClass('caret').addClass('icon-caret-down-two');
+  $('a.item-link').mouseover(function() {
+    $(this).css( "background-color", "rgba(34,38,40, .5)" );
+  }).mouseout(function() {
+  	$(this).css( "background-color", "transparent" );;
+  });
+
+    $('.listing-author').mouseover(function() {
+    $(this).prev().css( "background-color", "rgba(34,38,40, .5)" );
+  }).mouseout(function() {
+  	$(this).css( "background-color", "transparent" );
+  });
+
+
+
+});
+
+
+$(document).ready(function(){
+	Dropzone.autoDiscover = false;
+	$("#old_photo").dropzone({
+		removedfile: function(file){
+			// grap the id of the uploaded file we set earlier
+			var id = $(file.previewTemplate).find('.dz-remove').attr('id'); 
+ 
+			// make a DELETE ajax request to delete the file
+			$.ajax({
+				type: 'DELETE',
+				url: '/photos/' + id,
+				success: function(data){
+					console.log(data.message);
+					$(file.previewElement).fadeOut("fast");
+				}
+			});
+		}
+	});
+});
+
+
+
+$(document).ready(function(){
+	// disable auto discover
+	Dropzone.autoDiscover = false;
+ 
+	// grap our upload form by its id
+	$("#new_photo").dropzone({
+		thumbnailWidth:"230",
+  		thumbnailHeight:"230",
+  		maxFiles: "5",
+		// restrict image size to a maximum 1MB
+		maxFilesize: 1,
+		// changed the passed param to one accepted by
+		// our rails app
+		paramName: "photo[image]",
+		// show remove links on each image upload
+		addRemoveLinks: true,
+		// if the upload was successful
+		success: function(file, response){
+			// find the remove button link of the uploaded file and give it an id
+			// based of the fileID response from the server
+			$(file.previewTemplate).find('.dz-remove').attr('id', response.fileID);
+			// add the dz-success class (the green tick sign)
+			$(file.previewElement).addClass("dz-success");
+		},
+		//when the remove button is clicked
+		removedfile: function(file){
+			// grap the id of the uploaded file we set earlier
+			var id = $(file.previewTemplate).find('.dz-remove').attr('id'); 
+ 
+			// make a DELETE ajax request to delete the file
+			$.ajax({
+				type: 'DELETE',
+				url: '/photos/' + id,
+				success: function(data){
+					console.log(data.message);
+					$(file.previewElement).fadeOut("fast");
+				}
+			});
+		}
+	});	
+});
+
+
+
+$(document).ready(function(){
+	jQuery('ul.nav li.dropdown').hover(function() {
+	  jQuery(this).find('.dropdown-menu').stop(true, true).delay(50).fadeIn('fast');
+	}, function() {
+	  jQuery(this).find('.dropdown-menu').stop(true, true).delay(50).fadeOut('fast');
+	});
+});
+
+
+/* Find empty container in profiles */
+
+$(document).ready(function(){
+	if($.trim($(".user-profile-section #item-container").html())=='') {
+		$('.user-profile-section .user-profile-section-title').remove();
+		$(".user-profile-section #item-container").remove();
+		$('.user-profile-section').append("<div class='user-profile-items-empty'><p>Vartotojas nėra įkėlęs jokių rankdarbių.</p></div>");
+	}
 });

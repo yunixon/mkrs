@@ -11,6 +11,7 @@ class ListingsController < ApplicationController
 # end
 
 
+
   # GET /listings
   # GET /listings.json
   def index
@@ -26,8 +27,14 @@ class ListingsController < ApplicationController
   # GET /listings/1
   # GET /listings/1.json
   def show
-    @listing  = Listing.find(params[:id])
+    @listing  = Listing.friendly.find(params[:id])
     @photos = @listing.photos
+
+    @subcategory = @listing.subcategory
+    @category = @listing.category
+    @listings = @category.listings.all.where.not(id: @listing.id).order("RANDOM()").limit(4)
+    # @listings = Listing.all.order("created_at DESC")
+
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,8 +43,20 @@ class ListingsController < ApplicationController
   end
 
   # GET /listings/new
+  # def new
+  #   @listing = Listing.new
+
+  #   respond_to do |format|
+  #     format.html # new.html.erb
+  #     format.json { render json: @listing }
+  #   end
+  # end
+
   def new
     @listing = Listing.new
+    @listing.token = @listing.generate_token
+    @photo = @listing.photos.build
+    @photos = []
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,75 +64,63 @@ class ListingsController < ApplicationController
     end
   end
 
+
   # GET /listings/1/edit
   def edit
-    @listing = Listing.find(params[:id])
+    @listing = Listing.friendly.find(params[:id])
+    @photosold = @listing.photos
+    @photo = @listing.photos.build
+    @photos = []
+
   end
 
   # POST /listings
   # POST /listings.json
-  #def create
-  #  @listing = Listing.new(listing_params)
-  #  @listing.user_id = current_user.id
-  #  respond_to do |format|
-  #    if @listing.save
-  #      format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
-  #      format.json { render :show, status: :created, location: @listing }
-  #    else
-  #      format.html { render :new }
-  #      format.json { render json: @listing.errors, status: :unprocessable_entity }
-  #    end
-  #  end
-  #end
 
- def create
-    #@listing = current_user.listings.build(listing_params)
+  def create
     @listing = Listing.new(listing_params)
     @listing.user_id = current_user.id
+    @photos = Photo.where(:listing_token => @listing.token)
+    @listing.photos << @photos
 
-    if @listing.save
-      # to handle multiple images upload on create
-      if params[:images]
-        params[:images].each { |image|
-          @listing.photos.create(image: image)
-        }
+    respond_to do |format|
+      if @listing.save
+        format.html { redirect_to @listing, notice: 'Gallery was successfully created.' }
+        format.json { render json: @listing, status: :created, location: @listing }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @listing.errors, status: :unprocessable_entity }
       end
-      flash[:notice] = "Your listing has been created."
-      redirect_to @listing
-    else 
-      flash[:alert] = "Something went wrong."
-      render :new
     end
   end
+
 
 
   # PATCH/PUT /listings/1
   # PATCH/PUT /listings/1.json
   def update
-    @listing  = Listing.find(params[:id])
+    @listing  = Listing.friendly.find(params[:id])
+        
+    @photos = Photo.where(:listing_id => @listing.id)
+    @listing.photos << @photos
 
     respond_to do |format|
-      if @listing.update_attributes(listing_params)
-        if params[:images]
-          # The magic is here ;)
-          params[:images].each { |image|
-            @listing.photos.create(image: image)
-          }
-        end
-        format.html { redirect_to @listing, notice: 'Gallery was successfully updated.' }
-        format.json { head :no_content }
+      if @listing.save
+        format.html { redirect_to :action => 'show', notice: 'Gallery was successfully created.' }
+        format.json { render json: @listing, status: :created, location: @listing }
       else
-        format.html { render action: "edit" }
+        format.html { render action: "new" }
         format.json { render json: @listing.errors, status: :unprocessable_entity }
       end
-      end
+    end
+
   end
 
   # DELETE /listings/1
   # DELETE /listings/1.json
   def destroy
   
-    @listing = Listing.find(params[:id])
+    @listing = Listing.friendly.find(params[:id])
     @listing.destroy
 
     respond_to do |format|
@@ -130,12 +137,14 @@ class ListingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_listing
-      @listing = Listing.find(params[:id])
+      @listing = Listing.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:name, :description, :price, :image, :materials, :category_id, :dimentions, :state, :exchangeable)
+      params.require(:listing).permit(:token, :name, :description, :price, :image, :materials, :category_id, :subcategory_id, 
+
+:dimentions, :state, :exchangeable)
     end
 
     def check_user

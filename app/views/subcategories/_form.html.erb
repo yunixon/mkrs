@@ -1,0 +1,12 @@
+<%= form_for @subcategory do |f| %>
+
+  <div class="form-inputs">
+    <%= f.text_field :name %>
+    <%= f.text_field :description %>
+    <%= f.text_field :category_id %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit :submit %>
+  </div>
+<% end %>

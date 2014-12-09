@@ -2,16 +2,24 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
-  validates :user_name, presence: true
-  validates_uniqueness_of :user_name
-
   acts_as_messageable
+  mount_uploader :profile_image, AvatarUploader
+
+  extend FriendlyId
+  friendly_id :user_name, use: :slugged
+ 
+  validates :user_name, :email, presence: { :message => 'Laukas privalomas' }
+
+  validates :user_name, format: { with: /[\w \.\-@]+/, message: "Galima naudoti tik raides ir sk." },  :length => { :minimum => 5, :maximum => 40, :message => 'should be between 7 and 40 characters' }
+
+ validates_uniqueness_of :user_name
+
 
 
   has_many :listings, dependent: :destroy
 
   # Avatar uploader
-  mount_uploader :profile_image, AvatarUploader
+
 
 
 
@@ -52,7 +60,7 @@ class User < ActiveRecord::Base
         user = User.new(
           first_name: auth.info.first_name,
           last_name: auth.info.last_name,
-          user_name: auth.extra.raw_info.name,
+          user_name: auth.extra.raw_info.name.delete(' '),
           #username: auth.info.nickname || auth.uid,
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20],

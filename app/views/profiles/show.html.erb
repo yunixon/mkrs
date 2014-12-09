@@ -8,30 +8,23 @@
 
     <div class="col-sm-7 col-xs-12">
       <p class="h3"><%= @user.user_name %></p>
-      <p class="user-location"><i class="icon-placepin"></i><%= @user.location %></p>
+      <% if @user.location?%>
+        <i class="icon-placepin"></i><p class="location"><%= @user.location %></p>
+      <% end %>
+        <% if @user.bio? %>
       <p class="user-bio"><%= @user.bio %></p>
+        <% end %>
     </div>
-    <div class="col-md-4"></div>
   </div>
   </div>
-
+<div class="split"></div>
 
   </div>
 
   <div class="container">
+  <div class="user-profile-section">
+    <p class="user-profile-section-title">Autoriaus rankdarbiai</p>
+    <%= render 'forms/items' %>
+  </div>
 
-<div id="item-container" class="transitions-enabled infinite-scroll clearfix">
-  <% @listings.each do |listing| %>
-    <div class="box col3">
-      <div class="item-small">
-       <%= link_to '', listing, :class => 'item-link' %>
-        <%= image_tag listing.photos.first.image.small.url %> 
-          <div class="item-info">
-            <p class="item-name"><%= listing.name %></p>
-            <p class="item-price"><%= listing.price %> €</p>
-          </div>
-      </div>
-    </div>
-  <% end %>
-</div>
-</div>
+  </div>

@@ -15,8 +15,11 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require bootstrap-tagsinput
-//= require jquery-fileupload/basic
-//= require rails.validations
+//= require jquery-fileupload
+//= require dropzone
+//= require jquery-ui
+
+//= require bootstrap-select
 //= require turbolinks
 //= require masonry/jquery.masonry
 //= require_tree .

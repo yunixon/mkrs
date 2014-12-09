@@ -2,7 +2,8 @@ class ProfilesController < ApplicationController
 
   
   def show
-  	@user = User.find(params[:id])
+    
+  	@user = User.friendly.find(params[:id])
   	@listings = @user.listings.all
 
   	if @user

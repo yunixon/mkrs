@@ -1,36 +1,35 @@
-	<div class="cat-hero">
-		<div class="cat-hero-image">
-			<%= image_tag @category.hero_image %>
-		</div>
+	
+
+	<div class="cat-hero"  style="background: url('<%= @category.hero_image %>') center center">
 		<div class="container">
 			<div class="cat-info">
-			<p class="cat-name">
-				<%= @category.name %>
-			</p>
-			<p class="cat-description">
-				<%= @category.description %>
-			</p>
+						<p class="cat-name">
+							<%= @category.name %>
+						</p>
+
+
+					<p class="cat-description">
+						<%= @category.description %>
+					</p>
+
 			</div>
+	<div class="subcategories">
+
+				<% @subcategories.each do |subcategory| %>
+					<%= link_to subcategory.name,  [@category, subcategory] %>
+				<% end %>
+
+	</div>
+
+
+
 		</div>
 
 	</div>
 
 <div class="container">
 
-<div id="item-container" class="transitions-enabled infinite-scroll clearfix">
-	<% @listings.each do |listing| %>
-		<div class="box col3">
-		  <div class="item-small">
-		   <%= link_to '', listing, :class => 'item-link' %>
-		 		<%= image_tag listing.photos.first.image.small.url %> 
-		 		  <div class="item-info">
-				    <p class="item-name"><%= listing.name %></p>
-			      <p class="item-price"><%= listing.price %> €</p>
-		    	</div>
-		  </div>
-		</div>
-	<% end %>
-</div>
+	<%= render 'forms/items' %>
 
 </div>
 

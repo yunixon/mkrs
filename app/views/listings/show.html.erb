@@ -52,7 +52,7 @@
               </div>
               <div class="col-md-8">
                 <p class="info">
-                <a href="/<%= @listing.user.name %>"><%= @listing.user.user_name %></a>
+                <a href="<%= profile_path(current_user) %>"><%= @listing.user.user_name %></a>
                 </p>
               </div>
             </div>
@@ -113,9 +113,12 @@
 
         </div>
     </div> 
+  </div>
 
-
-</div>
+  <div class="split"></div>
+   <p class="similar-items-title">Panašūs rakdarbiai</p>
+    <%= render 'forms/items' %>
+  </div>
 
 </div>
 </div>

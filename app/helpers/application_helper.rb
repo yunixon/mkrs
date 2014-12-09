@@ -8,7 +8,6 @@ module ApplicationHelper
   end
 
 
-
   def resource_name
     :user
   end

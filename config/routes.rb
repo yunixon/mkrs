@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   root 'pages#index'
 
 
@@ -8,9 +10,25 @@ Rails.application.routes.draw do
 
   get 'profiles/edit'
 
-  resources :listings
+
   resources :photos
   
+  # resources :categories do 
+  #   resources :subcategories 
+  # end 
+
+  resources :categories, path: 'rankdarbiai', only: [:show] do
+    resources :subcategories, path: '',  only: [:show] do
+      resources :listings, path: '', as: 'listing' , only: [:show]
+    end
+  end
+
+
+
+
+
+  resources :listings, only: [:new, :create, :edit, :update, :destroy]
+
   get 'pages/about'
   get 'pages/homepage'
   get 'pages/contact'
@@ -18,15 +36,23 @@ Rails.application.routes.draw do
   get 'seller/:id/listings' => "listings#seller"
 
 
-  get 'profiles/:id', to: 'profiles#show'
+
+
+  #Listings
+  # get '/rankdarbiai/:id', to: 'listings#show', as: 'listing'
+  # get 'rankdarbiai/naujas', to: 'listings#new', as: 'listing'
+
+
+  get 'profiles/:id', to: 'profiles#show', as: 'profile', path: 'narys/:id'
+  # get 'profiles/:user', to: 'profiles#show', path: 'narys/:user', as: 'profile'
 
   devise_for :users, :controllers => { :registrations => "registrations", :sessions => 'sessions', omniauth_callbacks: 'omniauth_callbacks'}
 
 
-
   get 'pages/homepage'
 
-  resources :categories
+  # resources :categories
+  # resources :subcategories
 
 
   resources :conversations, only: [:index, :show, :new, :create] do
@@ -37,6 +63,10 @@ Rails.application.routes.draw do
     end
   end
 
+
+  
+
+  
   #301 REDIRECT
 
 

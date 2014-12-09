@@ -20,6 +20,10 @@ Rails.application.configure do
     domain: 'somedomain.com'
   }
 
+config.assets.precompile += 
+%w( #{Rails.root}/vendor/assets/stylesheets/active_admin.css.scss)
+config.assets.precompile += 
+%w( #{Rails.root}/vendor/assets/javascripts/active_admin.js.coffee)
 
 
   # Code is not reloaded between requests.
