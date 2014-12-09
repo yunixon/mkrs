@@ -12,9 +12,9 @@ gem 'coffee-script', '~> 2.3.0'
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'pg'
 end
 
-gem 'pg'
 
 group :production do
   gem 'pg'
