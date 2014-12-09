@@ -1225,9 +1225,7 @@ h3 + #item-container {
     transition: all .2s ease-out;
 }
 
-/*.item-small .item-link:hover {
-	background: rgba(34,38,40, .5);
-}*/
+
 
 .item-small {
 	width: 265px;
@@ -1727,10 +1725,7 @@ a.icon-message {
 
 /* misc */
 
-/*form#new_user {
-	min-height: 450px;
-}
-*/
+
 
 .navbar-nav>li>a.upload-listing {
 	background: #00c697;
@@ -1844,9 +1839,6 @@ h3 + .split {
 	background: #20c851;
 }
 
-.col-md-8 .cat {
-
-}
 
 
 /* retina icons */
