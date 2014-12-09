@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   #   resources :subcategories 
   # end 
 
-  resources :categories, path: 'rankdarbiai', only: [:show] do
+  resources :categories, path: 'rankdarbiai',  as: 'category', only: [:show] do
     resources :subcategories, path: '',  only: [:show] do
       resources :listings, path: '', as: 'listing' , only: [:show]
     end
