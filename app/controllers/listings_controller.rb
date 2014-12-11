@@ -16,7 +16,7 @@ class ListingsController < ApplicationController
   # GET /listings.json
   def index
     @listings = Listing.all.order("created_at DESC")
-
+    @categories = 'bar'
 
     respond_to do |format|
       format.html # index.html.erb

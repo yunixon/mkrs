@@ -24,8 +24,7 @@ Rails.application.routes.draw do
   end
 
 
-
-
+  resources :listings, path: 'rankdarbiai', as: 'listing' , only: [:index]
 
   resources :listings, only: [:new, :create, :edit, :update, :destroy]
 

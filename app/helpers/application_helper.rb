@@ -11,7 +11,12 @@ module ApplicationHelper
   def resource_name
     :user
   end
- 
+  
+  def category
+    @categories = Category.all
+  end
+
+
   def resource
     @resource ||= User.new
   end

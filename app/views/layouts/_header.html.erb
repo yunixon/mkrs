@@ -28,7 +28,7 @@
             <%= image_tag(current_user.profile_image) %>
             <span class="icon-angle-down"></span>
           </a>
-          <ul class="dropdown-menu" role="menu">
+          <ul class="dropdown-menu user" role="menu">
             <li><a href='<%= profile_path(current_user) %>'>Mano profilis</a></li>
             <li><%= link_to "Nustatymai", edit_user_registration_path %></li>
             <li><%= link_to('Atsijungti', destroy_user_session_path, 
@@ -36,24 +36,23 @@
           </ul>
         </li>
         <% else %>
-        <li>
-        <%= link_to "Prisijungti", "#login", "data-toggle" => "modal", :class => 'login' %>
-        </li>
-  <!--  <li>
-        <%= link_to "Registruotis", "#sign_up", "data-toggle" => "modal", :class => 'register'%>
-        </li> -->
+          <li>
+          <%= link_to "Prisijungti", "#login", "data-toggle" => "modal", :class => 'login' %>
+          </li>
         <% end %>
       </ul>
 
       <ul class="nav navbar-nav navbar-left">
-       <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Rankdarbiai
-        <span class="caret"></span></a>
+       <li class="dropdown cat"><a href="/rankdarbiai" class="dropdown-toggle">Rankdarbiai
+        <span class="icon-angle-down"></span></a>
           <ul class="dropdown-menu categories" role="menu">
-            <li><a href="#"><i class="icon-monocle-mustache-streamline"></i>Testas</a></li>
-            <li><a href="#">Mano kolekcija</a></li>
-            <li><a href="#">Profilio nustatymai</a></li>
-            <li class="divider"></li>
-            <li><a href="#" class="logout">Atsijungti</a></li>
+            
+          <% category.each do |cat| %>
+               <li><a href='/rankdarbiai/<%= cat.slug %>'><%= cat.name %></a></li>
+          <% end %>
+
+
+
           </ul>
         </li>
         <li><a href="#">Autoriai</a></li>
